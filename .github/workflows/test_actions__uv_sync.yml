@@ -22,6 +22,5 @@ jobs:
       # installs tools like pyclean
       - uses: ./.github/actions/uv_sync
 
-      - uses: percebus/github-actions-pip/.github/actions/pip_freeze@main
       - name: uv pip freeze
         run: uv pip freeze
