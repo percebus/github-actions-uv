@@ -23,7 +23,6 @@ jobs:
       - name: "--version"
         run: uvx pyclean  --version
 
-
   python__matrix:
     needs: default
     runs-on: ubuntu-latest
@@ -79,7 +78,6 @@ jobs:
 
       - name: "--version"
         run: uvx pyclean  --version
-
 
   uv_tool__matrix:
     needs: default
