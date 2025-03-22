@@ -18,3 +18,7 @@ runs:
     - name: uv sync
       shell: bash
       run: uv sync ${{ inputs.uv_sync_cli_options }}
+
+    # TODO
+    # uv pip install .
+    # uv pip freeze

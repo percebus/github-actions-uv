@@ -1,5 +1,5 @@
-name: uv sync
-description: uv sync
+name: uv tool install
+description: uv tool install
 inputs:
   uv_tool_install_cli_options:
     description: CLI options for uv tool install
