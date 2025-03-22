@@ -2,7 +2,6 @@
   "name": "github-actions-uv",
   "version": "1.0.0",
   "description": "github re-usable actions & workflows for uv",
-  "main": "index.js",
   "scripts": {
     "prettier": "prettier .",
     "prettier:write": "npm run prettier -- --write",

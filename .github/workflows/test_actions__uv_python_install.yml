@@ -1,0 +1,51 @@
+name: Test actions/uv_python_install
+
+on:
+  push:
+  workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+
+jobs:
+  default:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+
+      # installs pip
+      - uses: percebus/github-actions-python/.github/actions/python_setup@main
+
+      # installs pipx
+      - uses: percebus/github-actions-pip/.github/actions/pip_install_upgrade@main
+
+      # installs uv
+      - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
+
+      # installs tools like pyclean
+      - uses: ./.github/actions/uv_python_install
+
+      # TODO venv?
+
+  python__matrix:
+    needs: default
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        python-versions:
+          - "3.12.x"
+          - "3.13.x"
+          - "3.x"
+
+    name: python @ ${{ matrix.python-versions }}
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+      - uses: percebus/github-actions-python/.github/actions/python_setup@main
+      - uses: percebus/github-actions-pip/.github/actions/pip_install_upgrade@main
+      - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
+
+      - uses: ./.github/actions/uv_python_install
+        with:
+          python-versions-file: assets/uv_python/${{ matrix.python-versions }}/.python-versions
+
+      # TODO venv?

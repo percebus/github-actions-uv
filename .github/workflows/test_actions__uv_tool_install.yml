@@ -1,4 +1,4 @@
-name: Test actions/poetry_self_add_plugins
+name: Test actions/uv_tool_intall
 
 on:
   push:
@@ -9,16 +9,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
+
+      # installs pip
       - uses: percebus/github-actions-python/.github/actions/python_setup@main
+
+      # installs pipx
       - uses: percebus/github-actions-pip/.github/actions/pip_install_upgrade@main
 
       # installs uv
       - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
 
-      # installs pyclean
+      # installs tools like pyclean
       - uses: ./.github/actions/uv_tool_install
 
-      - uses: percebus/github-actions-pip/.github/actions/pip_freeze@main
+      - name: uv pip freeze
+        run: uv pip freeze
 
       - name: "--version"
         run: uvx pyclean  --version
@@ -46,8 +51,11 @@ jobs:
 
       - uses: percebus/github-actions-pip/.github/actions/pip_install_upgrade@main
       - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
+
       - uses: ./.github/actions/uv_tool_install
-      - uses: percebus/github-actions-pip/.github/actions/pip_freeze@main
+
+      - name: uv pip freeze
+        run: uv pip freeze
 
       - name: "--version"
         run: uvx pyclean  --version
@@ -74,7 +82,9 @@ jobs:
           requirements-file: ./assets/uv/${{ matrix.uv-version }}/requirements.pipx.txt
 
       - uses: ./.github/actions/uv_tool_install
-      - uses: percebus/github-actions-pip/.github/actions/pip_freeze@main
+
+      - name: uv pip freeze
+        run: uv pip freeze
 
       - name: "--version"
         run: uvx pyclean  --version
@@ -102,7 +112,8 @@ jobs:
         with:
           requirements-file: ./assets/uv_tool/${{ matrix.uv-tool }}/requirements.uv.tool.txt
 
-      - uses: percebus/github-actions-pip/.github/actions/pip_freeze@main
+      - name: uv pip freeze
+        run: uv pip freeze
 
       - name: "${{ matrix.uv-tool }} --version"
         run: uvx ${{ matrix.uv-tool }} --version

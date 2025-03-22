@@ -1,0 +1,26 @@
+name: Test actions/uv_sync
+
+on:
+  push:
+  workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+
+jobs:
+  default:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+
+      # installs pip
+      - uses: percebus/github-actions-python/.github/actions/python_setup@main
+
+      # installs pipx
+      - uses: percebus/github-actions-pip/.github/actions/pip_install_upgrade@main
+
+      # installs uv
+      - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
+
+      # installs tools like pyclean
+      - uses: ./.github/actions/uv_sync
+
+      - name: uv pip freeze
+        run: uv pip freeze
