@@ -1,0 +1,20 @@
+name: uv sync
+description: uv sync
+inputs:
+  uv_sync_cli_options:
+    description: CLI options for uv sync
+    required: false
+    default: "--locked --all-extras"
+
+  # TODO?
+  # virtualenvs-create:
+  #   description: Create (or not) virtualenvs
+  #   required: false
+  #   default: "false"
+
+runs:
+  using: composite
+  steps:
+    - name: uv sync
+      shell: bash
+      run: uv sync ${{ inputs.uv_sync_cli_options }}
