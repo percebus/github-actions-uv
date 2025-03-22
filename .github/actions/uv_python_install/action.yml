@@ -1,7 +1,6 @@
 name: uv python install
 description: uv python install
 inputs:
-
   python-versions-file:
     description: Path to requirements file
     required: false
