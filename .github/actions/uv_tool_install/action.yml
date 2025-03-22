@@ -1,0 +1,23 @@
+name: uv sync
+description: uv sync
+inputs:
+  uv_tool_install_cli_options:
+    description: CLI options for uv tool install
+    required: false
+    default: "--force"
+
+  requirements-file:
+    description: Path to requirements file
+    required: false
+    default: requirements.uv.tool.txt
+
+runs:
+  using: composite
+  steps:
+    - name: cat ${{ inputs.requirements-file }}
+      shell: bash
+      run: cat ${{ inputs.requirements-file }}
+
+    - name: uv tool install
+      shell: bash
+      run: cat ${{ inputs.requirements-file }} | sed 's/.*/"&"/' | xargs -n 1 uv tool install ${{ inputs.uv_tool_install_cli_options }}
