@@ -104,5 +104,5 @@ jobs:
 
       - uses: percebus/github-actions-pip/.github/actions/pip_freeze@main
 
-      - name: "--version"
+      - name: "${{ matrix.uv-tool }} --version"
         run: uvx ${{ matrix.uv-tool }} --version
