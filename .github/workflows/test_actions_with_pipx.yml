@@ -33,7 +33,7 @@ jobs:
           - "0.5.x"
           - "0.6.x"
 
-    name: python @ ${{ matrix.python-version }}
+    name: uv @ ${{ matrix.uv-version }}
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
 

@@ -96,7 +96,7 @@ jobs:
           - pyclean
           - pypyr
 
-    name: uv tool @ ${{ matrix.uv-tool }}
+    name: "uv tool install: ${{ matrix.uv-tool }}"
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
       - uses: ./.github/actions/setup
