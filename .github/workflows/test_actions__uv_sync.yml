@@ -9,10 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-      - uses: percebus/github-actions-uv/.github/actions/setup@main
-      - uses: percebus/github-actions-uv/.github/actions/uv_python_install@main
-
-      # installs tools like pyclean
+      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/uv_python_install
       - uses: ./.github/actions/uv_sync
 
       - name: uv pip freeze

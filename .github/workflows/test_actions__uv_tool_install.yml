@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-      - uses: percebus/github-actions-uv/.github/actions/setup@main
-      - uses: percebus/github-actions-uv/.github/actions/uv_python_install@main
+      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/uv_python_install
 
       # installs tools like pyclean
       - uses: ./.github/actions/uv_tool_install
@@ -44,7 +44,7 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       # installs uv
-      - uses: percebus/github-actions-uv/.github/actions/setup@main
+      - uses: ./.github/actions/setup
 
       - uses: ./.github/actions/uv_tool_install
 
@@ -70,11 +70,11 @@ jobs:
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
 
-      - uses: percebus/github-actions-uv/.github/actions/setup@main
+      - uses: ./.github/actions/setup
         with:
           version: ${{ matrix.uv-version }}
 
-      - uses: percebus/github-actions-uv/.github/actions/uv_python_install@main
+      - uses: ./.github/actions/uv_python_install
 
       - uses: ./.github/actions/uv_tool_install
 
@@ -99,8 +99,8 @@ jobs:
     name: uv tool @ ${{ matrix.uv-tool }}
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-      - uses: percebus/github-actions-uv/.github/actions/setup@main
-      - uses: percebus/github-actions-uv/.github/actions/uv_python_install@main
+      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/uv_python_install
 
       - uses: ./.github/actions/uv_tool_install
         with:

@@ -10,7 +10,7 @@ jobs:
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
 
-      - uses: percebus/github-actions-uv/.github/actions/setup@main
+      - uses: ./.github/actions/setup
 
       # installs tools like pyclean
       - uses: ./.github/actions/uv_python_install
@@ -34,7 +34,7 @@ jobs:
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
 
-      - uses: percebus/github-actions-uv/.github/actions/setup@main
+      - uses: ./.github/actions/setup
 
       - uses: ./.github/actions/uv_python_install
         with:
