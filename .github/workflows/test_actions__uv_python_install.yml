@@ -38,6 +38,6 @@ jobs:
 
       - uses: ./.github/actions/uv_python_install
         with:
-          python-versions-file: assets/uv_python/${{ matrix.python-versions }}/.python-versions
+          directory: assets/uv_python/${{ matrix.python-versions }}
 
       # TODO venv?
