@@ -10,14 +10,10 @@ jobs:
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
 
-      # installs pip
-      - uses: percebus/github-actions-python/.github/actions/python_setup@main
+      - uses: percebus/github-actions-uv/.github/actions/setup@main
 
-      # installs pipx
-      - uses: percebus/github-actions-pip/.github/actions/pip_install_upgrade@main
-
-      # installs uv
-      - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
+      - name: uv python install
+        run: uv python install
 
       # installs tools like pyclean
       - uses: ./.github/actions/uv_sync

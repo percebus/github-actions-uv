@@ -10,14 +10,7 @@ jobs:
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
 
-      # installs pip
-      - uses: percebus/github-actions-python/.github/actions/python_setup@main
-
-      # installs pipx
-      - uses: percebus/github-actions-pip/.github/actions/pip_install_upgrade@main
-
-      # installs uv
-      - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
+      - uses: percebus/github-actions-uv/.github/actions/setup@main
 
       # installs tools like pyclean
       - uses: ./.github/actions/uv_python_install
@@ -40,9 +33,8 @@ jobs:
     name: python @ ${{ matrix.python-versions }}
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-      - uses: percebus/github-actions-python/.github/actions/python_setup@main
-      - uses: percebus/github-actions-pip/.github/actions/pip_install_upgrade@main
-      - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
+
+      - uses: percebus/github-actions-uv/.github/actions/setup@main
 
       - uses: ./.github/actions/uv_python_install
         with:
