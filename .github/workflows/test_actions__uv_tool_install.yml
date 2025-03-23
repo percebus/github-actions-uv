@@ -9,15 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-
-      # installs pip
-      - uses: percebus/github-actions-python/.github/actions/python_setup@main
-
-      # installs pipx
-      - uses: percebus/github-actions-pip/.github/actions/pip_install_upgrade@main
-
-      # installs uv
-      - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
+      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/uv_python_install
 
       # installs tools like pyclean
       - uses: ./.github/actions/uv_tool_install
@@ -45,12 +38,13 @@ jobs:
     name: python @ ${{ matrix.python-version }}
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
+
       - uses: percebus/github-actions-python/.github/actions/python_setup@main
         with:
           python-version: ${{ matrix.python-version }}
 
-      - uses: percebus/github-actions-pip/.github/actions/pip_install_upgrade@main
-      - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
+      # installs uv
+      - uses: ./.github/actions/setup
 
       - uses: ./.github/actions/uv_tool_install
 
@@ -69,17 +63,18 @@ jobs:
       max-parallel: 6
       matrix:
         uv-version:
-          - "0.5.x"
-          - "0.6.x"
+          - "0.5.31"
+          - "0.6.9"
 
     name: uv @ ${{ matrix.uv-version }}
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-      - uses: percebus/github-actions-python/.github/actions/python_setup@main
-      - uses: percebus/github-actions-pip/.github/actions/pip_install_upgrade@main
-      - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
+
+      - uses: ./.github/actions/setup
         with:
-          requirements-file: ./assets/uv/${{ matrix.uv-version }}/requirements.pipx.txt
+          version: ${{ matrix.uv-version }}
+
+      - uses: ./.github/actions/uv_python_install
 
       - uses: ./.github/actions/uv_tool_install
 
@@ -101,12 +96,11 @@ jobs:
           - pyclean
           - pypyr
 
-    name: uv tool @ ${{ matrix.uv-tool }}
+    name: "uv tool install: ${{ matrix.uv-tool }}"
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-      - uses: percebus/github-actions-python/.github/actions/python_setup@main
-      - uses: percebus/github-actions-pip/.github/actions/pip_install_upgrade@main
-      - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
+      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/uv_python_install
 
       - uses: ./.github/actions/uv_tool_install
         with:

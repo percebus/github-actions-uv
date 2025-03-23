@@ -1,0 +1,61 @@
+name: Test actions w/ pip(x)
+
+on:
+  push:
+  workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+
+jobs:
+  default:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+      - uses: percebus/github-actions-python/.github/actions/python_setup@main
+      - uses: percebus/github-actions-pip/.github/actions/pip_install_upgrade@main
+      - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
+      - uses: ./.github/actions/uv_sync
+      - uses: ./.github/actions/uv_tool_install
+
+      - name: uv pip freeze
+        run: uv pip freeze
+
+      - name: "--version"
+        run: uvx pyclean  --version
+
+  python__matrix:
+    needs: default
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        uv-version:
+          - "0.5.x"
+          - "0.6.x"
+
+    name: uv @ ${{ matrix.uv-version }}
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+
+      # installs pip
+      - uses: percebus/github-actions-python/.github/actions/python_setup@main
+
+      # installs pipx
+      - uses: percebus/github-actions-pip/.github/actions/pip_install_upgrade@main
+
+      # installs uv
+      - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
+        with:
+          requirements-file: assets/pipx/${{ matrix.uv-version }}/requirements.pipx.txt
+
+      # Chooses CPython venv
+      - uses: ./.github/actions/uv_sync
+
+      # installs tools like pyclean
+      - uses: ./.github/actions/uv_tool_install
+
+      - name: uv pip freeze
+        run: uv pip freeze
+
+      - name: "--version"
+        run: uvx pyclean  --version

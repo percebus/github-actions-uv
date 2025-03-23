@@ -9,7 +9,7 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Install uv
+    - name: uv @ ${{ inputs.version }}
       uses: astral-sh/setup-uv@v5
       with:
         version: ${{ inputs.version }}

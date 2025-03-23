@@ -1,18 +1,15 @@
 name: uv python install
 description: uv python install
+
 inputs:
-  python-versions-file:
-    description: Path to requirements file
+  directory:
+    description: Working directory
     required: false
-    default: .python-versions
+    default: .
 
 runs:
   using: composite
   steps:
-    - name: cat ${{ inputs.python-versions-file }}
+    - name: uv python install
       shell: bash
-      run: cat ${{ inputs.python-versions-file }}
-
-    - name: uv tool install
-      shell: bash
-      run: cat ${{ inputs.python-versions-file }} | sed 's/.*/"&"/' | xargs -n 1 uv python install
+      run: uv python install
