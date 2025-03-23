@@ -21,3 +21,7 @@ runs:
     - name: uv tool install
       shell: bash
       run: cat ${{ inputs.requirements-file }} | sed 's/.*/"&"/' | xargs -n 1 uv tool install ${{ inputs.uv_tool_install_cli_options }}
+
+    - name: uv tool list
+      shell: bash
+      run: uv tool list
