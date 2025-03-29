@@ -39,7 +39,7 @@ jobs:
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
 
-      - uses: percebus/github-actions-python/.github/actions/python_setup@main
+      - uses: percebus/github-actions-python/.github/actions/setup@main
         with:
           python-version: ${{ matrix.python-version }}
 
