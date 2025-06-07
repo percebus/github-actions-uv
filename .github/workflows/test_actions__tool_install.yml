@@ -1,8 +1,12 @@
-name: Test actions/uv_tool_intall
+name: Test actions/tool_install
 
 on:
   push:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
 
 jobs:
   default:
@@ -10,10 +14,10 @@ jobs:
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
       - uses: ./.github/actions/setup
-      - uses: ./.github/actions/uv_python_install
+      - uses: ./.github/actions/python_install
 
       # installs tools like pyclean
-      - uses: ./.github/actions/uv_tool_install
+      - uses: ./.github/actions/tool_install
 
       - name: uv pip freeze
         run: uv pip freeze
@@ -46,7 +50,7 @@ jobs:
       # installs uv
       - uses: ./.github/actions/setup
 
-      - uses: ./.github/actions/uv_tool_install
+      - uses: ./.github/actions/tool_install
 
       - name: uv pip freeze
         run: uv pip freeze
@@ -74,9 +78,9 @@ jobs:
         with:
           version: ${{ matrix.uv-version }}
 
-      - uses: ./.github/actions/uv_python_install
+      - uses: ./.github/actions/python_install
 
-      - uses: ./.github/actions/uv_tool_install
+      - uses: ./.github/actions/tool_install
 
       - name: uv pip freeze
         run: uv pip freeze
@@ -100,9 +104,9 @@ jobs:
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
       - uses: ./.github/actions/setup
-      - uses: ./.github/actions/uv_python_install
+      - uses: ./.github/actions/python_install
 
-      - uses: ./.github/actions/uv_tool_install
+      - uses: ./.github/actions/tool_install
         with:
           requirements-file: ./assets/uv_tool/${{ matrix.uv-tool }}/requirements.uv.tool.txt
 

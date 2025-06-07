@@ -1,8 +1,12 @@
-name: Test actions/uv_python_install
+name: Test actions/python_install
 
 on:
   push:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
 
 jobs:
   default:
@@ -13,7 +17,7 @@ jobs:
       - uses: ./.github/actions/setup
 
       # installs tools like pyclean
-      - uses: ./.github/actions/uv_python_install
+      - uses: ./.github/actions/python_install
 
       # TODO venv?
 
@@ -36,7 +40,7 @@ jobs:
 
       - uses: ./.github/actions/setup
 
-      - uses: ./.github/actions/uv_python_install
+      - uses: ./.github/actions/python_install
         with:
           directory: assets/uv_python/${{ matrix.python-versions }}
 
