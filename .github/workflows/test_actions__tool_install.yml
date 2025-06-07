@@ -1,4 +1,4 @@
-name: Test actions/uv_tool_intall
+name: Test actions/tool_install
 
 on:
   push:
