@@ -12,8 +12,8 @@ jobs:
       - uses: percebus/github-actions-python/.github/actions/setup@main
       - uses: percebus/github-actions-pip/.github/actions/pip-upgrade@main
       - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
-      - uses: ./.github/actions/uv_sync
-      - uses: ./.github/actions/uv_tool_install
+      - uses: ./.github/actions/sync
+      - uses: ./.github/actions/tool_install
 
       - name: uv pip freeze
         run: uv pip freeze
@@ -41,7 +41,7 @@ jobs:
       - uses: percebus/github-actions-python/.github/actions/setup@main
 
       # installs pipx
-      - uses: percebus/github-actions-pip/.github/actions/pip-upgrade@main
+      - uses: percebus/github-actions-pip/.github/actions/install-upgrade@main
 
       # installs uv
       - uses: percebus/github-actions-pipx/.github/actions/pipx_install@main
@@ -49,10 +49,10 @@ jobs:
           requirements-file: assets/pipx/${{ matrix.uv-version }}/requirements.pipx.txt
 
       # Chooses CPython venv
-      - uses: ./.github/actions/uv_sync
+      - uses: ./.github/actions/sync
 
       # installs tools like pyclean
-      - uses: ./.github/actions/uv_tool_install
+      - uses: ./.github/actions/tool_install
 
       - name: uv pip freeze
         run: uv pip freeze

@@ -1,4 +1,4 @@
-name: Test actions/uv_sync
+name: Test actions/sync
 
 on:
   push:
@@ -10,8 +10,8 @@ jobs:
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
       - uses: ./.github/actions/setup
-      - uses: ./.github/actions/uv_python_install
-      - uses: ./.github/actions/uv_sync
+      - uses: ./.github/actions/python_install
+      - uses: ./.github/actions/sync
 
       - name: uv pip freeze
         run: uv pip freeze
