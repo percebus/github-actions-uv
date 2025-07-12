@@ -13,17 +13,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
+
+      # Installs pip
       - uses: percebus/github-actions-python/.github/actions/setup@main
+
+      # Installs pipx from requirements.upgrade.txt
       - uses: percebus/github-actions-pip/.github/actions/install-upgrade@main
+
+      # Installs uv from requirements.pipx.txt
       - uses: percebus/github-actions-pipx/.github/actions/install@main
+
+      # uv sync from pyproject.toml
       - uses: ./.github/actions/sync
+
+      # Installs uv tools from requirements.uv.tool.txt
       - uses: ./.github/actions/tool_install
 
-      - name: uv pip freeze
-        run: uv pip freeze
+      - uses: ./.github/actions/pip_freeze
 
-      - name: "--version"
-        run: uvx pyclean  --version
+      - name: "uvx pyclean --version"
+        run: uvx pyclean --version
 
   python__matrix:
     needs: default
@@ -40,26 +49,15 @@ jobs:
     name: uv @ ${{ matrix.uv-version }}
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-
-      # installs pip
       - uses: percebus/github-actions-python/.github/actions/setup@main
-
-      # installs pipx
       - uses: percebus/github-actions-pip/.github/actions/install-upgrade@main
-
-      # installs uv
       - uses: percebus/github-actions-pipx/.github/actions/install@main
         with:
           requirements-file: assets/pipx/${{ matrix.uv-version }}/requirements.pipx.txt
 
-      # Chooses CPython venv
       - uses: ./.github/actions/sync
-
-      # installs tools like pyclean
       - uses: ./.github/actions/tool_install
+      - uses: ./.github/actions/pip_freeze
 
-      - name: uv pip freeze
-        run: uv pip freeze
-
-      - name: "--version"
+      - name: "uvx pyclean --version"
         run: uvx pyclean  --version

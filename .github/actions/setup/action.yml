@@ -1,5 +1,6 @@
 name: setup-uv
 description: setup uv
+
 inputs:
   version:
     description: uv version
@@ -13,3 +14,7 @@ runs:
       uses: astral-sh/setup-uv@v5
       with:
         version: ${{ inputs.version }}
+
+    - name: uv --version
+      shell: bash
+      run: uv --version

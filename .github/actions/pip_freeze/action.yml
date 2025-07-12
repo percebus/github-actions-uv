@@ -1,0 +1,9 @@
+name: uv pip freeze
+description: uv pip freeze
+
+runs:
+  using: composite
+  steps:
+    - name: uv pip freeze
+      shell: bash
+      run: uv pip freeze

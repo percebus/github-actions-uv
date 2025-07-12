@@ -19,12 +19,12 @@ jobs:
       # installs tools like pyclean
       - uses: ./.github/actions/tool_install
 
-      - name: uv pip freeze
-        run: uv pip freeze
+      - uses: ./.github/actions/pip_freeze
 
       - name: "--version"
         run: uvx pyclean  --version
 
+  # Override .python-version(s) with github-actions-python/.../setup
   python__matrix:
     needs: default
     runs-on: ubuntu-latest
@@ -47,15 +47,11 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      # installs uv
       - uses: ./.github/actions/setup
-
       - uses: ./.github/actions/tool_install
+      - uses: ./.github/actions/pip_freeze
 
-      - name: uv pip freeze
-        run: uv pip freeze
-
-      - name: "--version"
+      - name: "uvx pyclean --version"
         run: uvx pyclean  --version
 
   uv__matrix:
@@ -79,13 +75,10 @@ jobs:
           version: ${{ matrix.uv-version }}
 
       - uses: ./.github/actions/python_install
-
       - uses: ./.github/actions/tool_install
+      - uses: ./.github/actions/pip_freeze
 
-      - name: uv pip freeze
-        run: uv pip freeze
-
-      - name: "--version"
+      - name: "uvx pyclean --version"
         run: uvx pyclean  --version
 
   uv_tool__matrix:
@@ -110,8 +103,7 @@ jobs:
         with:
           requirements-file: ./assets/uv_tool/${{ matrix.uv-tool }}/requirements.uv.tool.txt
 
-      - name: uv pip freeze
-        run: uv pip freeze
+      - uses: ./.github/actions/pip_freeze
 
       - name: "${{ matrix.uv-tool }} --version"
         run: uvx ${{ matrix.uv-tool }} --version

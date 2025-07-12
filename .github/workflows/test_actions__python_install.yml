@@ -13,13 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-
       - uses: ./.github/actions/setup
-
-      # installs tools like pyclean
       - uses: ./.github/actions/python_install
-
-      # TODO venv?
 
   python__matrix:
     needs: default
@@ -37,11 +32,7 @@ jobs:
     name: python @ ${{ matrix.python-versions }}
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-
       - uses: ./.github/actions/setup
-
       - uses: ./.github/actions/python_install
         with:
-          directory: assets/uv_python/${{ matrix.python-versions }}
-
-      # TODO venv?
+          working-directory: assets/uv_python/${{ matrix.python-versions }}
