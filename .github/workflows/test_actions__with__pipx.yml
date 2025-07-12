@@ -23,11 +23,11 @@ jobs:
       # Installs uv from requirements.pipx.txt
       - uses: percebus/github-actions-pipx/.github/actions/install@main
 
-      # Installs uv tools from requirements.uv.tool.txt
-      - uses: ./.github/actions/tool_install
-
       # uv sync from pyproject.toml
       - uses: ./.github/actions/sync
+
+      # Installs uv tools from requirements.uv.tool.txt
+      - uses: ./.github/actions/tool_install
 
       - uses: ./.github/actions/pip_freeze
 
@@ -55,8 +55,8 @@ jobs:
         with:
           requirements-file: assets/pipx/${{ matrix.uv-version }}/requirements.pipx.txt
 
-      - uses: ./.github/actions/tool_install
       - uses: ./.github/actions/sync
+      - uses: ./.github/actions/tool_install
       - uses: ./.github/actions/pip_freeze
 
       - name: "uvx pyclean --version"
