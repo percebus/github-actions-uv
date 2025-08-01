@@ -5,7 +5,8 @@ inputs:
   pip_cli_options:
     description: Options to pass to the pip command
     required: false
-    default: "--verbose"
+    # i.e. --verbose, --no-cache-dir, etc.
+    default: ""
 
   requirements-file:
     description: Path to the requirements file
