@@ -1,9 +1,22 @@
 name: uv pip freeze
 description: uv pip freeze
 
+inputs:
+  pip_cli_options:
+    description: Options to pass to the pip command
+    required: false
+    default: "--verbose"
+
+  requirements-file:
+    description: Path to the requirements file
+    required: false
+    default: ./requirements.frozen.txt
+
 runs:
   using: composite
   steps:
-    - name: uv pip freeze
+    - name: uv pip freeze > ${{ inputs.requirements-file }}
       shell: bash
-      run: uv pip freeze
+      run: |
+        uv pip freeze ${{ inputs.pip_cli_options }}
+        uv pip freeze ${{ inputs.pip_cli_options }} > ${{ inputs.requirements-file }}

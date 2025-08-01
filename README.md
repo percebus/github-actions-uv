@@ -1,6 +1,6 @@
 # github-actions-uv
 
-[`TODO`s](./TODO.md) | [LICENSE](./LICENSE.md)
+[`LICENSE`](./LICENSE) | [`TODO`s](./TODO.md)
 
 [![[C]ontinuous [I]ntegration](https://github.com/percebus/github-actions-uv/actions/workflows/always.yml/badge.svg)](https://github.com/percebus/github-actions-uv/actions/workflows/always.yml)
 
