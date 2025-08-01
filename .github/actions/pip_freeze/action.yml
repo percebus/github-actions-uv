@@ -2,10 +2,10 @@ name: uv pip freeze
 description: uv pip freeze
 
 inputs:
+  # i.e. --verbose, --no-cache-dir, etc.
   pip_cli_options:
     description: Options to pass to the pip command
     required: false
-    # i.e. --verbose, --no-cache-dir, etc.
     default: ""
 
   requirements-file:
