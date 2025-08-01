@@ -19,4 +19,4 @@ runs:
       shell: bash
       run: |
         uv pip freeze ${{ inputs.pip_cli_options }}
-        uv pip freeze ${{ inputs.pip_cli_options }} > ${{ inputs.requirements-file }}
+        uv pip freeze > ${{ inputs.requirements-file }}
