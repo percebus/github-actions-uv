@@ -10,6 +10,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  # TODO pip-audit
   audit:
     uses: percebus/github-actions-npm/.github/workflows/dependency-review.yml@main
     permissions:

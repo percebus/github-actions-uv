@@ -45,6 +45,7 @@ jobs:
         uv-version:
           - "0.5.x"
           - "0.6.x"
+          - "0.7.x"
 
     name: uv @ ${{ matrix.uv-version }}
     steps:
