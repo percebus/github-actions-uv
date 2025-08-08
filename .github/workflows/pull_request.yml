@@ -9,10 +9,18 @@ concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+  pull-requests: read
+
 jobs:
-  # TODO pip-audit
-  audit:
-    uses: percebus/github-actions-npm/.github/workflows/dependency-review.yml@main
-    permissions:
-      contents: read
-      pull-requests: read
+  dependency-review:
+    uses: percebus/github-actions-common/.github/workflows/dependency-review.yml@main
+
+  package_json:
+    name: package.json
+    uses: percebus/github-actions-npm/.github/workflows/audit.yml@main
+
+  pyproject_toml:
+    name: pyproject.toml
+    uses: percebus/github-actions-pipx/.github/workflows/run_pip-audit_path.yml@main
