@@ -17,8 +17,10 @@ jobs:
   dependency-review:
     uses: percebus/github-actions-common/.github/workflows/dependency-review.yml@main
 
-  npm_audit:
+  package_json:
+    name: package.json
     uses: percebus/github-actions-npm/.github/workflows/audit.yml@main
 
-  pip-audit:
+  pyproject_toml:
+    name: pyproject.toml
     uses: percebus/github-actions-pipx/.github/workflows/run_pip-audit_path.yml@main
