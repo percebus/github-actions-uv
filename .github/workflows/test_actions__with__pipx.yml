@@ -29,7 +29,7 @@ jobs:
       # Installs uv tools from requirements.uv.tool.txt
       - uses: ./.github/actions/tool_install
 
-      - uses: ./.github/actions/pip_freeze
+      - uses: percebus/github-actions-pip/.github/actions/freeze@main
 
       - name: "uvx pyclean --version"
         run: uvx pyclean --version
