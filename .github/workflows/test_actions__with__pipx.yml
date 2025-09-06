@@ -8,6 +8,9 @@ concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   default:
     runs-on: ubuntu-latest
@@ -29,7 +32,7 @@ jobs:
       # Installs uv tools from requirements.uv.tool.txt
       - uses: ./.github/actions/tool_install
 
-      - uses: ./.github/actions/pip_freeze
+      - uses: percebus/github-actions-pip/.github/actions/freeze@main
 
       - name: "uvx pyclean --version"
         run: uvx pyclean --version
@@ -56,9 +59,9 @@ jobs:
         with:
           requirements-file: assets/pipx/${{ matrix.uv-version }}/requirements.pipx.txt
 
-      - uses: ./.github/actions/sync
       - uses: ./.github/actions/tool_install
-      - uses: ./.github/actions/pip_freeze
+      - uses: ./.github/actions/sync
+      - uses: percebus/github-actions-pip/.github/actions/freeze@main
 
       - name: "uvx pyclean --version"
         run: uvx pyclean  --version

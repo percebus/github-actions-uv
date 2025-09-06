@@ -8,6 +8,9 @@ concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   default:
     runs-on: ubuntu-latest
@@ -16,4 +19,16 @@ jobs:
       - uses: ./.github/actions/setup
       - uses: ./.github/actions/python_install
       - uses: ./.github/actions/sync
-      - uses: ./.github/actions/pip_freeze
+      - uses: percebus/github-actions-pip/.github/actions/freeze@main
+
+  with__tool_install:
+    needs: default
+    name: w/ tool_install
+    runs-on: ubuntu-latest
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/python_install
+      - uses: ./.github/actions/tool_install
+      - uses: ./.github/actions/sync
+      - uses: percebus/github-actions-pip/.github/actions/freeze@main
