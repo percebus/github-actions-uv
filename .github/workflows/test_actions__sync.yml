@@ -21,7 +21,7 @@ jobs:
       - uses: ./.github/actions/sync
       - uses: percebus/github-actions-pip/.github/actions/freeze@main
 
-  with_tool_install:
+  with__tool_install:
     needs: default
     name: w/ tool_install
     runs-on: ubuntu-latest
