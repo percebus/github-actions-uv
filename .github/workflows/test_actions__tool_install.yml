@@ -19,7 +19,7 @@ jobs:
       # installs tools like pyclean
       - uses: ./.github/actions/tool_install
 
-      - uses: ./.github/actions/pip_freeze
+      - uses: percebus/github-actions-pip/.github/actions/freeze@main
 
       - name: "--version"
         run: uvx pyclean  --version
@@ -49,7 +49,7 @@ jobs:
 
       - uses: ./.github/actions/setup
       - uses: ./.github/actions/tool_install
-      - uses: ./.github/actions/pip_freeze
+      - uses: percebus/github-actions-pip/.github/actions/freeze@main
 
       - name: "uvx pyclean --version"
         run: uvx pyclean  --version
@@ -76,7 +76,7 @@ jobs:
 
       - uses: ./.github/actions/python_install
       - uses: ./.github/actions/tool_install
-      - uses: ./.github/actions/pip_freeze
+      - uses: percebus/github-actions-pip/.github/actions/freeze@main
 
       - name: "uvx pyclean --version"
         run: uvx pyclean  --version

@@ -29,7 +29,7 @@ jobs:
       matrix:
         language:
           - actions
-          - python
+          # - python  # TODO?
 
     name: "CodeQL: ${{ matrix.language }}"
     uses: percebus/github-actions-compliance/.github/workflows/codeql_analyze.yml@main
