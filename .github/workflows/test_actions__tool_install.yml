@@ -103,7 +103,7 @@ jobs:
         with:
           requirements-file: ./assets/uv_tool/${{ matrix.uv-tool }}/requirements.uv.tool.txt
 
-      - uses: ./.github/actions/pip_freeze
+      - uses: percebus/github-actions-pip/.github/actions/freeze@main
 
       - name: "${{ matrix.uv-tool }} --version"
         run: uvx ${{ matrix.uv-tool }} --version

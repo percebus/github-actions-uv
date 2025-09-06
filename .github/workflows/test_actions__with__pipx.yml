@@ -56,9 +56,9 @@ jobs:
         with:
           requirements-file: assets/pipx/${{ matrix.uv-version }}/requirements.pipx.txt
 
-      - uses: ./.github/actions/sync
       - uses: ./.github/actions/tool_install
-      - uses: ./.github/actions/pip_freeze
+      - uses: ./.github/actions/sync
+      - uses: percebus/github-actions-pip/.github/actions/freeze@main
 
       - name: "uvx pyclean --version"
         run: uvx pyclean  --version

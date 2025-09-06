@@ -16,4 +16,4 @@ jobs:
       - uses: ./.github/actions/setup
       - uses: ./.github/actions/python_install
       - uses: ./.github/actions/sync
-      - uses: ./.github/actions/pip_freeze
+      - uses: percebus/github-actions-pip/.github/actions/freeze@main
