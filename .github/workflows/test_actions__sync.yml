@@ -20,7 +20,7 @@ jobs:
 
   with_tool_install:
     needs: default
-    name: w/ `tool_install`
+    name: w/ tool_install
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
