@@ -2,7 +2,7 @@ name: uv sync
 description: uv sync
 
 inputs:
-  sync_cli_options:
+  uv_sync_cli_options:
     description: CLI options for uv sync
     required: false
     default: "--locked --all-extras"
@@ -12,4 +12,4 @@ runs:
   steps:
     - name: uv sync
       shell: bash
-      run: uv sync ${{ inputs.sync_cli_options }}
+      run: uv sync ${{ inputs.uv_sync_cli_options }}

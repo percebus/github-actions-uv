@@ -26,11 +26,11 @@ jobs:
       # Installs uv from requirements.pipx.txt
       - uses: percebus/github-actions-pipx/.github/actions/install@main
 
-      # uv sync from pyproject.toml
-      - uses: ./.github/actions/sync
-
       # Installs uv tools from requirements.uv.tool.txt
       - uses: ./.github/actions/tool_install
+
+      # uv sync from pyproject.toml
+      - uses: ./.github/actions/sync
 
       - uses: percebus/github-actions-pip/.github/actions/freeze@main
 
