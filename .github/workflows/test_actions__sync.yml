@@ -32,3 +32,29 @@ jobs:
       - uses: ./.github/actions/tool_install
       - uses: ./.github/actions/sync
       - uses: percebus/github-actions-pip/.github/actions/freeze@main
+
+  pyproject__matrix:
+    needs: default
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        project:
+          - agent-framework-sampler-py
+          - ai-evaluator-py
+
+    name: ${{ matrix.project }}/pyproject.toml
+    env:
+      WORKING_DIRECTORY: assets/uv/${{ matrix.project }}
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/python_install
+        with:
+          working-directory: ${{ env.WORKING_DIRECTORY }}
+
+      - uses: ./.github/actions/sync
+        with:
+          working-directory: ${{ env.WORKING_DIRECTORY }}
