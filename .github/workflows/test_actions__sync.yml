@@ -45,7 +45,7 @@ jobs:
           - agent-framework-sampler-py
           - ai-evaluator-py
 
-    name: uv @ ${{ matrix.uv-version }}
+    name: uv @ ${{ matrix.project }}
     env:
       WORKING_DIRECTORY: assets/uv/${{ matrix.project }}
     steps:
