@@ -2,6 +2,11 @@ name: uv sync
 description: uv sync
 
 inputs:
+  working-directory:
+    description: Working directory
+    required: false
+    default: .
+
   uv_sync_cli_options:
     description: CLI options for uv sync
     required: false
@@ -12,4 +17,5 @@ runs:
   steps:
     - name: uv sync
       shell: bash
+      working-directory: ${{ inputs.working-directory }}
       run: uv sync ${{ inputs.uv_sync_cli_options }}
