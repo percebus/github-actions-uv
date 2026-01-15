@@ -1,0 +1,30 @@
+[project]
+name = "agent-framework-orchestrator-a2a-client"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.13,<4.0"
+dependencies = [
+    "a2a-sdk>=0.3.22,<0.4.0",
+    "agent-framework==1.0.0b251218",
+    "azure-identity>=1.25.1,<2.0",
+    "httpx>=0.28.1,<0.29.0",
+    "lagom>=2.7.7,<3.0",
+    "pydantic-settings>=2.12.0,<3.0",
+    "pydantic>=2.12.5,<3.0",
+    "python-dotenv>=1.2.1,<2.0",
+]
+
+[dependency-groups]
+cli = [
+    "pyright>=1.1.407,<2.0",
+    "ruff>=0.14.10,<0.15.0",
+]
+
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/a2a_ai_orchestrator"]

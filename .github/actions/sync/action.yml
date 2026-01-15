@@ -10,7 +10,7 @@ inputs:
   uv_sync_cli_options:
     description: CLI options for uv sync
     required: false
-    default: "--locked --all-extras"
+    default: "--locked --all-groups --all-extras"
 
 runs:
   using: composite
