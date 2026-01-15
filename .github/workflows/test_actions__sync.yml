@@ -44,6 +44,7 @@ jobs:
         project:
           - agent-framework-sampler-py
           - ai-evaluator-py
+          - azure-foundry-ai-evaluator-py
 
     name: ${{ matrix.project }}/pyproject.toml
     env:
