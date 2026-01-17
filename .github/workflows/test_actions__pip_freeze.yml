@@ -1,0 +1,47 @@
+name: Test ./.github/actions/pip_freeze
+
+on:
+  workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+  pull_request:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  default:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/python_install
+      - uses: ./.github/actions/pip_freeze
+
+  uv_python__matrix:
+    needs: default
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        python-versions:
+          - "3.12.x"
+          - "3.13.x"
+          - "3.x"
+
+    name: python @ ${{ matrix.python-versions }}
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/python_install
+        with:
+          working-directory: assets/uv_python/${{ matrix.python-versions }}
+
+      - uses: ./.github/actions/pip_freeze
