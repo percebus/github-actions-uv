@@ -31,6 +31,7 @@ jobs:
 
       # Installs uv tools from requirements.uv.tool.txt
       - uses: ./.github/actions/tool_install
+      - uses: ./.github/actions/test__tool
 
       # uv sync from pyproject.toml
       - uses: ./.github/actions/sync
@@ -63,6 +64,7 @@ jobs:
           requirements-file: assets/pipx/${{ matrix.uv-version }}/requirements.pipx.txt
 
       - uses: ./.github/actions/tool_install
+      - uses: ./.github/actions/test__tool
       - uses: ./.github/actions/sync
       - uses: ./.github/actions/pip_freeze
 
