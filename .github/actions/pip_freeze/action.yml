@@ -18,11 +18,12 @@ runs:
   steps:
     - name: python's pip freeze
       shell: bash
-      run: |
-        python -m pip freeze ${{ inputs.pip_cli_options }}
+      run: python -m pip freeze ${{ inputs.pip_cli_options }}
 
     - name: uv pip freeze > ${{ inputs.requirements-file }}
       shell: bash
-      run: |
-        uv pip freeze ${{ inputs.pip_cli_options }} > ${{ inputs.requirements-file }}
-        cat ${{ inputs.requirements-file }}
+      run: uv pip freeze ${{ inputs.pip_cli_options }} > ${{ inputs.requirements-file }}
+
+    - name: cat ${{ inputs.requirements-file }}
+      shell: bash
+      run: cat ${{ inputs.requirements-file }}
