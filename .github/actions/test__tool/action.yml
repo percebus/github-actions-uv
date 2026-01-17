@@ -1,0 +1,21 @@
+name: test pyclean
+description: Test that pyclean was installed via uv tool
+
+inputs:
+  name:
+    description: tool name
+    required: false
+    default: "pyclean"
+
+runs:
+  using: "composite"
+  steps:
+    - name: "which ${{ inputs.name }}"
+      shell: bash
+      run: which ${{ inputs.name }}
+
+    - name: "uv tool run ${{ inputs.name }} --version"
+      shell: bash
+      run: |
+        uv tool run ${{ inputs.name }} --version
+        uvx ${{ inputs.name }} --version

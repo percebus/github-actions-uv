@@ -32,6 +32,7 @@ jobs:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
       - uses: ./.github/actions/setup
       - uses: ./.github/actions/tool_install
+      - uses: ./.github/actions/test__tool
       - uses: ./.github/actions/python_install
       - uses: ./.github/actions/sync
       - uses: ./.github/actions/pip_freeze
