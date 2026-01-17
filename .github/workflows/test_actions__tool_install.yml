@@ -77,8 +77,8 @@ jobs:
         with:
           version: ${{ matrix.uv-version }}
 
-      - uses: ./.github/actions/python_install
       - uses: ./.github/actions/tool_install
+      - uses: ./.github/actions/python_install
       - uses: ./.github/actions/pip_freeze
 
       - name: "uvx pyclean --version"

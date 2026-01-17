@@ -28,8 +28,8 @@ jobs:
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
       - uses: ./.github/actions/setup
-      - uses: ./.github/actions/python_install
       - uses: ./.github/actions/tool_install
+      - uses: ./.github/actions/python_install
       - uses: ./.github/actions/sync
       - uses: ./.github/actions/pip_freeze
 
@@ -59,3 +59,5 @@ jobs:
       - uses: ./.github/actions/sync
         with:
           working-directory: ${{ env.WORKING_DIRECTORY }}
+
+      - uses: ./.github/actions/pip_freeze
