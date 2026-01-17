@@ -1,8 +1,11 @@
 name: Test actions/tool_install
 
 on:
-  push:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+  pull_request:
+  push:
+    branches:
+      - main
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
@@ -22,9 +25,41 @@ jobs:
       # installs tools like pyclean
       - uses: ./.github/actions/tool_install
 
-      - uses: percebus/github-actions-pip/.github/actions/freeze@main
+      - uses: ./.github/actions/pip_freeze
 
       - name: "--version"
+        run: uvx pyclean  --version
+
+  # Override .python-version(s) with python_install
+  uv_python__matrix:
+    needs: default
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        python-version:
+          - "3.12.x"
+          - "3.13.x"
+          - "3.x"
+
+    name: uv python @ ${{ matrix.python-version }}
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+
+      - uses: ./.github/actions/setup
+      - uses: ./.github/actions/python_install
+        with:
+          working-directory: assets/uv_python/${{ matrix.python-version }}
+
+      - uses: ./.github/actions/tool_install
+      - uses: ./.github/actions/pip_freeze
+
+      - name: which pyclean
+        run: which pyclean
+
+      - name: uvx pyclean --version
         run: uvx pyclean  --version
 
   # Override .python-version(s) with github-actions-python/.../setup
@@ -52,9 +87,12 @@ jobs:
 
       - uses: ./.github/actions/setup
       - uses: ./.github/actions/tool_install
-      - uses: percebus/github-actions-pip/.github/actions/freeze@main
+      - uses: ./.github/actions/pip_freeze
 
-      - name: "uvx pyclean --version"
+      - name: which pyclean
+        run: which pyclean
+
+      - name: uvx pyclean --version
         run: uvx pyclean  --version
 
   uv__matrix:
@@ -77,9 +115,12 @@ jobs:
         with:
           version: ${{ matrix.uv-version }}
 
-      - uses: ./.github/actions/python_install
       - uses: ./.github/actions/tool_install
-      - uses: percebus/github-actions-pip/.github/actions/freeze@main
+      - uses: ./.github/actions/python_install
+      - uses: ./.github/actions/pip_freeze
+
+      - name: which pyclean
+        run: which pyclean
 
       - name: "uvx pyclean --version"
         run: uvx pyclean  --version
@@ -106,7 +147,13 @@ jobs:
         with:
           requirements-file: ./assets/uv_tool/${{ matrix.uv-tool }}/requirements.uv.tool.txt
 
-      - uses: percebus/github-actions-pip/.github/actions/freeze@main
+      - uses: ./.github/actions/pip_freeze
 
-      - name: "${{ matrix.uv-tool }} --version"
+      - name: "which ${{ matrix.uv-tool }}"
+        run: which ${{ matrix.uv-tool }}
+
+      - name: "uv tool run ${{ matrix.uv-tool }} --version"
+        run: uv tool run ${{ matrix.uv-tool }} --version
+
+      - name: "uvx ${{ matrix.uv-tool }} --version"
         run: uvx ${{ matrix.uv-tool }} --version

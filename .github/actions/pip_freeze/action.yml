@@ -1,0 +1,27 @@
+name: uv pip freeze
+description: Freeze pip packages
+
+inputs:
+  # i.e. --verbose, --no-cache-dir, etc.
+  pip_cli_options:
+    description: Options to pass to the pip command
+    required: false
+    default: ""
+
+  requirements-file:
+    description: Path to the requirements file
+    required: false
+    default: ./requirements.frozen.txt
+
+runs:
+  using: "composite"
+  steps:
+    - name: python's pip freeze
+      shell: bash
+      run: python -m pip freeze ${{ inputs.pip_cli_options }}
+
+    - name: uv pip freeze > ${{ inputs.requirements-file }}
+      shell: bash
+      run: |
+        uv pip freeze ${{ inputs.pip_cli_options }} > ${{ inputs.requirements-file }}
+        cat ${{ inputs.requirements-file }}
