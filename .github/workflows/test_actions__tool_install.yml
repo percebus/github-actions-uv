@@ -108,5 +108,10 @@ jobs:
 
       - uses: ./.github/actions/pip_freeze
 
+      - name: "which ${{ matrix.uv-tool }}"
+        run: which ${{ matrix.uv-tool }}
+
       - name: "${{ matrix.uv-tool }} --version"
-        run: uvx ${{ matrix.uv-tool }} --version
+        run: |
+          uv tool run ${{ matrix.uv-tool }} --version
+          uvx ${{ matrix.uv-tool }} --version
