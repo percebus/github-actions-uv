@@ -35,7 +35,7 @@ jobs:
       # uv sync from pyproject.toml
       - uses: ./.github/actions/sync
 
-      - uses: percebus/github-actions-pip/.github/actions/freeze@main
+      - uses: ./.github/actions/pip_freeze
 
       - name: "uvx pyclean --version"
         run: uvx pyclean --version
@@ -64,7 +64,7 @@ jobs:
 
       - uses: ./.github/actions/tool_install
       - uses: ./.github/actions/sync
-      - uses: percebus/github-actions-pip/.github/actions/freeze@main
+      - uses: ./.github/actions/pip_freeze
 
       - name: "uvx pyclean --version"
         run: uvx pyclean  --version
