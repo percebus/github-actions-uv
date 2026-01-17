@@ -1,8 +1,11 @@
 name: Test actions/tool_install
 
 on:
-  push:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
+  pull_request:
+  push:
+    branches:
+      - main
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
@@ -108,5 +111,10 @@ jobs:
 
       - uses: ./.github/actions/pip_freeze
 
+      - name: "which ${{ matrix.uv-tool }}"
+        run: which ${{ matrix.uv-tool }}
+
       - name: "${{ matrix.uv-tool }} --version"
-        run: uvx ${{ matrix.uv-tool }} --version
+        run: |
+          uv tool run ${{ matrix.uv-tool }} --version
+          uvx ${{ matrix.uv-tool }} --version
