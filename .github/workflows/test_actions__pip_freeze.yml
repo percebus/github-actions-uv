@@ -1,4 +1,4 @@
-name: Test ./.github/actions/pip_freeze
+name: Test actions/pip_freeze
 
 on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab

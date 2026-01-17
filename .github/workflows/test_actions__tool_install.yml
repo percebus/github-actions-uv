@@ -44,7 +44,7 @@ jobs:
           - "3.13.x"
           - "3.x"
 
-    name: python @ ${{ matrix.python-version }}
+    name: uv python @ ${{ matrix.python-version }}
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
 
