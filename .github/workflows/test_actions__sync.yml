@@ -19,7 +19,7 @@ jobs:
       - uses: ./.github/actions/setup
       - uses: ./.github/actions/python_install
       - uses: ./.github/actions/sync
-      - uses: percebus/github-actions-pip/.github/actions/freeze@main
+      - uses: ./.github/actions/pip_freeze
 
   with__tool_install:
     needs: default
@@ -31,7 +31,7 @@ jobs:
       - uses: ./.github/actions/python_install
       - uses: ./.github/actions/tool_install
       - uses: ./.github/actions/sync
-      - uses: percebus/github-actions-pip/.github/actions/freeze@main
+      - uses: ./.github/actions/pip_freeze
 
   pyproject__matrix:
     needs: default
