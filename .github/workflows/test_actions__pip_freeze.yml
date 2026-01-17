@@ -23,6 +23,7 @@ jobs:
       - uses: ./.github/actions/python_install
       - uses: ./.github/actions/pip_freeze
 
+
   uv_python__matrix:
     needs: default
     runs-on: ubuntu-latest
@@ -31,17 +32,44 @@ jobs:
       fail-fast: false
       max-parallel: 6
       matrix:
-        python-versions:
+        python-version:
           - "3.12.x"
           - "3.13.x"
           - "3.x"
 
-    name: python @ ${{ matrix.python-versions }}
+    name: uv python @ ${{ matrix.python-version }}
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
       - uses: ./.github/actions/setup
       - uses: ./.github/actions/python_install
         with:
-          working-directory: assets/uv_python/${{ matrix.python-versions }}
+          working-directory: assets/uv_python/${{ matrix.python-version }}
 
+      - uses: ./.github/actions/pip_freeze
+
+
+  # Override .python-version(s) with github-actions-python/.../setup
+  python__matrix:
+    needs: default
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        python-version:
+          - "3.10"
+          - "3.11"
+          - "3.12"
+          - "3.13"
+
+    name: python @ ${{ matrix.python-version }}
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+
+      - uses: percebus/github-actions-python/.github/actions/setup@main
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - uses: ./.github/actions/setup
       - uses: ./.github/actions/pip_freeze

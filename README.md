@@ -16,7 +16,7 @@ github re-usable actions &amp; workflows for uv
 | [`python_install`](./.github/actions/python_install) | [![Test actions/python_install](https://github.com/percebus/github-actions-uv/actions/workflows/test_actions__python_install.yml/badge.svg)](https://github.com/percebus/github-actions-uv/actions/workflows/test_actions__python_install.yml) |
 | [`tool_install`](./.github/actions/tool_install)     | [![Test actions/tool_install](https://github.com/percebus/github-actions-uv/actions/workflows/test_actions__tool_install.yml/badge.svg)](https://github.com/percebus/github-actions-uv/actions/workflows/test_actions__tool_install.yml)       |
 | [`sync`](./.github/actions/sync)                     | [![Test actions/sync](https://github.com/percebus/github-actions-uv/actions/workflows/test_actions__sync.yml/badge.svg)](https://github.com/percebus/github-actions-uv/actions/workflows/test_actions__sync.yml)                               |
-| [`pip_freeze`](./.github/actions/pip_freeze)         | [![Test actions/pip_freeze](https://github.com/percebus/github-actions-uv/actions/workflows/test_actions__pip_freeze.yml/badge.svg)](https://github.com/percebus/github-actions-uv/actions/workflows/test_actions__pip_freeze.yml) |
+| [`pip_freeze`](./.github/actions/pip_freeze)         | [![Test actions/pip_freeze](https://github.com/percebus/github-actions-uv/actions/workflows/test_actions__pip_freeze.yml/badge.svg)](https://github.com/percebus/github-actions-uv/actions/workflows/test_actions__pip_freeze.yml)             |
 
 #### Tests
 
