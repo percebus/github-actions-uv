@@ -1,12 +1,11 @@
 name: uv audit
 description: Audit & scans dependencies
 
-# TBD
-# inputs:
-#   name:
-#     description: 'Name to greet'
-#     required: false
-#     default: 'World'
+inputs:
+  uv_audit_cli_options:
+    description: uv audit {options}
+    required: false
+    default: --locked
 
 runs:
   # For more on composite actions, see:
@@ -14,4 +13,4 @@ runs:
   using: composite
   steps:
     - shell: bash  
-      run: uv audit
+      run: uv audit ${{ inputs.uv_audit_cli_options }}
