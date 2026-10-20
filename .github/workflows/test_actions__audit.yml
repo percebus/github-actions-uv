@@ -1,0 +1,16 @@
+name: Test actions/audit
+
+on:
+  pull_request:
+  push:
+    - main
+
+# concurrency: # TODO
+
+jobs:
+  default:
+    name: default
+    runs-on: ubuntu-latest
+    steps:
+      - name: uv
+        uses: ./.github/actions/audit
