@@ -1,1 +1,17 @@
+name: uv audit
+description: Audit & scans dependencies
 
+# TBD
+# inputs:
+#   name:
+#     description: 'Name to greet'
+#     required: false
+#     default: 'World'
+
+runs:
+  # For more on composite actions, see:
+  # https://docs.github.com/en/actions/sharing-automations/creating-actions/creating-a-composite-action
+  using: composite
+  steps:
+    - shell: bash  
+      run: uv audit
