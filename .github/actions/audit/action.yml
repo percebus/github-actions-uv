@@ -12,5 +12,5 @@ runs:
   # https://docs.github.com/en/actions/sharing-automations/creating-actions/creating-a-composite-action
   using: composite
   steps:
-    - shell: bash  
+    - shell: bash
       run: uv audit ${{ inputs.uv_audit_cli_options }}

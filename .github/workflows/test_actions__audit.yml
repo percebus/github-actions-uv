@@ -4,7 +4,7 @@ on:
   pull_request:
   push:
     branches:
-    - main
+      - main
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
@@ -20,6 +20,6 @@ jobs:
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
       - uses: ./.github/actions/setup
-    
+
       - name: uv audit
         uses: ./.github/actions/audit

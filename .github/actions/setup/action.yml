@@ -12,7 +12,7 @@ runs:
   steps:
     # TODO SHA commit
     - uses: astral-sh/setup-uv@v5
-      name: uv @ ${{ inputs.version }}  
+      name: uv @ ${{ inputs.version }}
       with:
         version: ${{ inputs.version }}
 
