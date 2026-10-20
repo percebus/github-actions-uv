@@ -1,0 +1,16 @@
+name: uv audit
+description: Audit & scans dependencies
+
+inputs:
+  uv_audit_cli_options:
+    description: uv audit {options}
+    required: false
+    default: --locked
+
+runs:
+  # For more on composite actions, see:
+  # https://docs.github.com/en/actions/sharing-automations/creating-actions/creating-a-composite-action
+  using: composite
+  steps:
+    - shell: bash
+      run: uv audit ${{ inputs.uv_audit_cli_options }}

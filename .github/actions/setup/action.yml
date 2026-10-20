@@ -5,13 +5,14 @@ inputs:
   version:
     description: uv version
     required: false
-    default: "0.8.4"
+    default: "0.13.3"
 
 runs:
   using: composite
   steps:
-    - name: uv @ ${{ inputs.version }}
-      uses: astral-sh/setup-uv@v5
+    # TODO SHA commit
+    - uses: astral-sh/setup-uv@v5
+      name: uv @ ${{ inputs.version }}
       with:
         version: ${{ inputs.version }}
 
