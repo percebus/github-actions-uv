@@ -18,5 +18,8 @@ jobs:
     name: default
     runs-on: ubuntu-latest
     steps:
-      - name: uv
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+      - uses: ./.github/actions/setup
+    
+      - name: uv audit
         uses: ./.github/actions/audit
