@@ -12,6 +12,12 @@ inputs:
     required: false
     default: requirements.uv.tool.txt
 
+  audit:
+    description: uv tool audit
+    required: false
+    # default: "true" # TODO
+    default: "false"
+
   continue-on-error:
     description: continue on error
     required: false
@@ -33,6 +39,7 @@ runs:
       run: uv tool
 
     - name: uv tool audit
+      if: ${{ inputs.audit == 'false' }}
       shell: bash
       run: uv tool audit
       continue-on-error: ${{ inputs.continue-on-error == 'true' }}
