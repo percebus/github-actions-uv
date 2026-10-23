@@ -39,7 +39,7 @@ runs:
       run: uv tool list
 
     - name: uv tool audit
-      if: ${{ inputs.audit == 'false' }}
+      if: ${{ inputs.audit == 'true' }}
       shell: bash
       run: uv tool audit
       continue-on-error: ${{ inputs.continue-on-error == 'true' }}
