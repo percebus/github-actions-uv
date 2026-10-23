@@ -30,7 +30,7 @@ runs:
 
     - name: uv tool list
       shell: bash
-      run: uv tool
+      run: uv tool list
 
     - name: uv tool audit
       shell: bash
