@@ -12,6 +12,11 @@ inputs:
     required: false
     default: requirements.uv.tool.txt
 
+  continue-on-error:
+    description: continue on error
+    required: false
+    default: 'false'
+
 runs:
   using: composite
   steps:
@@ -25,4 +30,9 @@ runs:
 
     - name: uv tool list
       shell: bash
-      run: uv tool list
+      run: uv tool 
+
+    - name: uv tool audit
+      shell: bash
+      run: uv tool audit
+      continue-on-error: ${{ inputs.continue-on-error == 'true' }}
