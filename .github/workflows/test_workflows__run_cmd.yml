@@ -24,3 +24,5 @@ jobs:
           - "echo 'hi'"
     name: run
     uses: ./.github/workflows/run_cmd.yml
+    with:
+      cmd: ${{ matrix.cmd }}
