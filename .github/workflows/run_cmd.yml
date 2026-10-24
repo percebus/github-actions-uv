@@ -3,6 +3,30 @@ name: run cmd
 on:
   workflow_call:
     inputs:
+      working-directory:
+        description: pwd
+        type: string
+        required: false
+        default: .
+
+      requirements-file:
+        description: uv tool install requirements.txt file
+        type: string
+        required: false
+        default: requirements.uv.tool.txt
+
+      uv_tool_install_cli_options:
+        description: uv tool install --help
+        type: string
+        required: false
+        default: --force
+
+      uv_sync_cli_options:
+        description: uv sync --help
+        type: string
+        required: false
+        default: --locked --all-groups
+
       cmd:
         description: command to be run
         type: string
@@ -19,7 +43,18 @@ jobs:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
       - uses: percebus/github-actions-uv/.github/actions/setup@main
       - uses: percebus/github-actions-uv/.github/actions/tool_install@main
+        with:
+          requirements-file: ${{ inputs.requirements-file }}
+          uv_tool_install_cli_options: ${{ inputs.uv_tool_install_cli_options }}
+
       - uses: percebus/github-actions-uv/.github/actions/python_install@main
+        with:
+          working-directory: ${{ inputs.working-directory }}
+
+      - uses: percebus/github-actions-uv/.github/actions/sync@main
+        with:
+          working-directory: ${{ inputs.working-directory }}
+          uv_sync_cli_options: ${{ inputs.uv_sync_cli_options }}
 
       - name: ${{ inputs.cmd }}
         run: ${{ inputs.cmd }}
