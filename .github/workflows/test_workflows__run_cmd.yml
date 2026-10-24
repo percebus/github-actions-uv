@@ -20,6 +20,6 @@ jobs:
       fail-fast: false
       matrix:
         cmd:
-          - "echo 'hi'"  
+          - "echo 'hi'"
     name: run
     uses: ./.github/workflows/run_cmd.yml
