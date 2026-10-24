@@ -26,4 +26,4 @@ jobs:
       - uses: percebus/github-actions-uv/.github/actions/python_install@main
 
       - name: ${{ inputs.cmd }}
-        run: cd ./ && ${{ inputs.cmd }}
+        run: ${{ inputs.cmd }}
