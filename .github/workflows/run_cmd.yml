@@ -13,7 +13,7 @@ permissions:
 
 jobs:
   run_cmd:
-    name: run cmd
+    name: ${{ inputs.cmd }}
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
