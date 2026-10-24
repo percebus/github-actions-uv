@@ -1,0 +1,25 @@
+name: Test workflows/run_cmd
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+# concurrency:
+#   group: TODO
+#   cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  cmd__matrix:
+    strategy:
+      max-parallel: 6
+      fail-fast: false
+      matrix:
+        cmd:
+          - "echo 'hi'"  
+    name: run
+    uses: ./.github/workflows/run_cmd.yml
