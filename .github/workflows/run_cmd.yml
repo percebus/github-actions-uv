@@ -2,16 +2,11 @@ name: run cmd
 
 on:
   workflow_call:
-    inpus:
+    inputs:
       cmd:
         description: command to be run
         type: string
         required: true
-
-  pull_request:
-  push:
-    branches:
-      - main
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
