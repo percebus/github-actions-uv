@@ -22,8 +22,19 @@ jobs:
       matrix:
         cmd:
           - "echo 'hi'"
-          - pyclean
-          - uvx pyclean
+    name: run
+    uses: ./.github/workflows/run_cmd.yml
+    with:
+      cmd: ${{ matrix.cmd }}
+
+  uv_tool__matrix:
+    strategy:
+      max-parallel: 6
+      fail-fast: false
+      matrix:
+        cmd:
+          - pyclean .
+          - uvx pyclean .
 
     name: run
     uses: ./.github/workflows/run_cmd.yml
