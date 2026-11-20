@@ -2,6 +2,11 @@ name: run cmd
 
 on:
   workflow_call:
+    secrets:
+      ssh-private-key:
+        description: SSH private key
+        required: false
+
     inputs:
       working-directory:
         description: pwd
@@ -31,19 +36,10 @@ jobs:
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
       - uses: percebus/github-actions-uv/.github/actions/setup@main
-
-      - uses: percebus/github-actions-uv/.github/actions/python_install@main
-        with:
-          working-directory: ${{ inputs.working-directory }}
-
-      # TODO?
-      # - uses: percebus/github-actions-uv/.github/actions/sync@main
-      #   with:
-      #     working-directory: ${{ inputs.working-directory }}
-      #     uv_sync_cli_options: ${{ inputs.uv_sync_cli_options }}
-
       - uses: percebus/github-actions-uv/.github/actions/audit@main
         continue-on-error: ${{ inputs.continue-on-error }}
+        secrets:
+          ssh-private-key: ${{ secrets.ssh-private-key }}
         with:
           working-directory: ${{ inputs.working-directory }}
           uv_audit_cli_options: ${{ inputs.uv_audit_cli_options }}
