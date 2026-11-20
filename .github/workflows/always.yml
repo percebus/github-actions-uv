@@ -15,26 +15,20 @@ permissions:
   contents: read
 
 jobs:
-  lint:
+  npm_lint:
     uses: percebus/github-actions-npm/.github/workflows/run_script.yml@main
+    name: npm
     with:
       script: lint
 
   codeQL:
-    needs: lint
+    needs: npm_lint
     permissions:
       actions: read
       contents: read
       security-events: write
 
-    strategy:
-      fail-fast: false
-      matrix:
-        language:
-          - actions
-          # - python  # TODO?
-
-    name: "CodeQL: ${{ matrix.language }}"
+    name: CodeQL analyze
     uses: percebus/github-actions-compliance/.github/workflows/codeql_analyze.yml@main
     with:
-      language: ${{ matrix.language }}
+      language: actions

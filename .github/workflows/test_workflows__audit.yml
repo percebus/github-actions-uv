@@ -1,0 +1,36 @@
+name: Test workflows/audit
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.ref }}-${{ github.workflow }}
+  cancel-in-progress: ${{ github.ref_name != 'main' }}
+
+permissions:
+  contents: read
+
+jobs:
+  # XXX: tested in pull_request
+  # default:
+  #   name: uv
+  #   uses: ./.github/workflows/audit.yml
+
+  pyproject__matrix:
+    strategy:
+      fail-fast: false
+      max-parallel: 6
+      matrix:
+        project:
+          - a2a-client-py
+          - agent-framework-sampler-py
+          - ai-evaluator-py
+
+    name: ${{ matrix.project }}/pyproject.toml
+    uses: ./.github/workflows/audit.yml
+    with:
+      working-directory: ./assets/uv/${{ matrix.project }}
+      continue-on-error: true
