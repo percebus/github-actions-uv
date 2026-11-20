@@ -2,10 +2,20 @@ name: uv audit
 description: Audit & scans dependencies
 
 inputs:
+  working-directory:
+    description: Working directory
+    required: false
+    default: .
+
   uv_audit_cli_options:
     description: uv audit {options}
     required: false
     default: --locked
+
+  continue-on-error:
+    description: continue on error
+    required: false
+    default: "false"
 
 runs:
   # For more on composite actions, see:
@@ -14,3 +24,5 @@ runs:
   steps:
     - shell: bash
       run: uv audit ${{ inputs.uv_audit_cli_options }}
+      working-directory: ${{ inputs.working-directory }}
+      continue-on-error: ${{ inputs.continue-on-error == 'true' }}

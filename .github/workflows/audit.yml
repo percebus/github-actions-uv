@@ -1,0 +1,45 @@
+name: "Re-Usable: uv audit"
+
+on:
+  workflow_call:
+    secrets:
+      ssh-private-key:
+        description: SSH private key
+        required: false
+
+    inputs:
+      working-directory:
+        description: pwd
+        type: string
+        required: false
+        default: .
+
+      uv_audit_cli_options:
+        description: uv audit {options}
+        type: string
+        required: false
+        default: --locked --preview-features audit-command
+
+      continue-on-error:
+        type: boolean
+        description: continue on error
+        required: false
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    name: audit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: percebus/github-actions-common/.github/actions/checkout@main
+      - uses: percebus/github-actions-uv/.github/actions/setup@main
+
+      - uses: percebus/github-actions-uv/.github/actions/audit@main
+        continue-on-error: ${{ inputs.continue-on-error }}
+        with:
+          working-directory: ${{ inputs.working-directory }}
+          uv_audit_cli_options: ${{ inputs.uv_audit_cli_options }}
+          continue-on-error: ${{ inputs.continue-on-error }}

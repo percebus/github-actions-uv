@@ -1,0 +1,47 @@
+name: Dependencies Review & Audit
+
+on:
+  workflow_call: # SRC: https://docs.github.com/en/actions/using-workflows/reusing-workflows
+    secrets:
+      ssh-private-key:
+        description: SSH private key
+        required: false
+
+    inputs:
+      working-directory:
+        type: string
+        description: Working directory
+        required: false
+        default: .
+
+      uv_audit_cli_options:
+        description: uv audit {options}
+        type: string
+        required: false
+        default: --locked --preview-features audit-command
+
+permissions:
+  contents: read
+
+jobs:
+  dependency-review:
+    name: github-actions-compliance
+    uses: percebus/github-actions-compliance/.github/workflows/dependency-review.yml@main
+    permissions:
+      contents: read
+      pull-requests: read
+    secrets:
+      ssh-private-key: ${{ secrets.ssh-private-key }}
+
+  # NOTE: is this job redundant?
+  # does dependency-review-action accomplish the same, and more?
+  audit:
+    name: uv
+    uses: ./.github/workflows/audit.yml
+    permissions:
+      contents: read
+    secrets:
+      ssh-private-key: ${{ secrets.ssh-private-key }}
+    with:
+      working-directory: ${{ inputs.working-directory }}
+      uv_audit_cli_options: ${{ inputs.uv_audit_cli_options }}
