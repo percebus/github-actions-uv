@@ -1,1 +1,2 @@
 exclude-newer = "1 week"
+preview-features = ["audit", "tool-install-locks"]

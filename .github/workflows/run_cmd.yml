@@ -19,7 +19,7 @@ on:
         description: uv tool install --help
         type: string
         required: false
-        default: --force
+        default: --force --preview-features audit,tool-install-locks
 
       uv_sync_cli_options:
         description: uv sync --help
