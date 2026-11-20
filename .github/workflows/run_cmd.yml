@@ -19,7 +19,7 @@ on:
         description: uv tool install --help
         type: string
         required: false
-        default: --force --preview-features audit,tool-install-locks
+        default: --force --preview-features tool-install-locks
 
       uv_sync_cli_options:
         description: uv sync --help
@@ -42,6 +42,9 @@ jobs:
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
       - uses: percebus/github-actions-uv/.github/actions/setup@main
+
+      # TODO add audit@main
+
       - uses: percebus/github-actions-uv/.github/actions/tool_install@main
         with:
           requirements-file: ${{ inputs.requirements-file }}

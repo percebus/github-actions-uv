@@ -5,7 +5,7 @@ inputs:
   uv_tool_install_cli_options:
     description: CLI options for uv tool install
     required: false
-    default: --force --preview-features audit,tool-install-locks
+    default: --force --preview-features tool-install-locks
 
   requirements-file:
     description: Path to requirements file
