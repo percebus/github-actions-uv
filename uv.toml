@@ -1,1 +1,1 @@
-exclude-newer-package = { tqdm = "1 week", markupsafe = false }
+exclude-newer = "1 week"
