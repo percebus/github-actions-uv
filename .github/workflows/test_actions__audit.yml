@@ -14,7 +14,6 @@ permissions:
   contents: read
 
 jobs:
-  # XXX tested in pull_request
   default:
     name: default
     runs-on: ubuntu-latest
@@ -39,12 +38,10 @@ jobs:
           - ai-evaluator-py
 
     name: ${{ matrix.project }}/pyproject.toml
-    env:
-      WORKING_DIRECTORY: assets/uv/${{ matrix.project }}
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
       - uses: $/.github/actions/setup
       - uses: $/.github/actions/audit
         with:
-          working-directory: ${{ env.WORKING_DIRECTORY }}
+          working-directory: ./assets/uv/${{ matrix.project }}
           continue-on-error: true
