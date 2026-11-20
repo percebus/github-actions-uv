@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "description": "github re-usable actions & workflows for uv",
   "scripts": {
-    "prettier": "prettier .",
-    "prettier:write": "npm run prettier -- --write",
-    "prettier:check": "npm run prettier -- --check",
+    "_prettier": "prettier .",
+    "prettier:write": "npm run _prettier -- --write",
+    "prettier:check": "npm run _prettier -- --check",
     "lint": "npm run prettier:check",
     "format": "npm run prettier:write",
     "postformat": "npm run lint",
@@ -30,6 +30,6 @@
   },
   "homepage": "https://github.com/percebus/github-actions-uv#readme",
   "devDependencies": {
-    "prettier": "^3.5.3"
+    "prettier": "^3.10.1"
   }
 }
