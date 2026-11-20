@@ -9,7 +9,7 @@ on:
 
 concurrency:
   group: ${{ github.ref }}-${{ github.workflow }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.ref_name != 'main' }}
 
 permissions:
   contents: read
@@ -84,10 +84,11 @@ jobs:
       max-parallel: 6
       matrix:
         python-version:
-          - "3.10"
-          - "3.11"
+          # - "3.10" # XXX old
+          # - "3.11" # XXX old
           - "3.12"
           - "3.13"
+          - "3.14"
 
     name: python @ ${{ matrix.python-version }}
     steps:
