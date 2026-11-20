@@ -46,9 +46,9 @@ jobs:
       max-parallel: 6
       matrix:
         project:
+          - a2a-client-py
           - agent-framework-sampler-py
           - ai-evaluator-py
-          - azure-foundry-ai-evaluator-py
 
     name: ${{ matrix.project }}/pyproject.toml
     env:

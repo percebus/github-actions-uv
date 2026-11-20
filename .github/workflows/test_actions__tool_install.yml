@@ -57,8 +57,8 @@ jobs:
       max-parallel: 6
       matrix:
         python-version:
-          - "3.12.x"
           - "3.13.x"
+          - "3.14.x"
           - "3.x"
 
     name: uv python @ ${{ matrix.python-version }}
@@ -112,8 +112,8 @@ jobs:
       max-parallel: 6
       matrix:
         uv-version:
-          - "0.5.31"
-          - "0.6.9"
+          - "0.13.0"
+          - "0.13.8"
 
     name: uv @ ${{ matrix.uv-version }}
     steps:
