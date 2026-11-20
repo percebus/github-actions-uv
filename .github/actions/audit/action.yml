@@ -24,4 +24,5 @@ runs:
   steps:
     - shell: bash
       run: uv audit ${{ inputs.uv_audit_cli_options }}
+      working-directory: ${{ inputs.working-directory }}
       continue-on-error: ${{ inputs.continue-on-error == 'true' }}
