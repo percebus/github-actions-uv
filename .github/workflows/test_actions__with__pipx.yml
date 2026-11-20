@@ -30,13 +30,13 @@ jobs:
       - uses: percebus/github-actions-pipx/.github/actions/install@main
 
       # Installs uv tools from requirements.uv.tool.txt
-      - uses: ./.github/actions/tool_install
-      - uses: ./.github/actions/test__tool
+      - uses: $/.github/actions/tool_install
+      - uses: $/.github/actions/test__tool
 
       # uv sync from pyproject.toml
-      - uses: ./.github/actions/sync
+      - uses: $/.github/actions/sync
 
-      - uses: ./.github/actions/pip_freeze
+      - uses: $/.github/actions/pip_freeze
 
       - name: "uvx pyclean --version"
         run: uvx pyclean --version
@@ -63,10 +63,10 @@ jobs:
         with:
           requirements-file: assets/pipx/${{ matrix.uv-version }}/requirements.pipx.txt
 
-      - uses: ./.github/actions/tool_install
-      - uses: ./.github/actions/test__tool
-      - uses: ./.github/actions/sync
-      - uses: ./.github/actions/pip_freeze
+      - uses: $/.github/actions/tool_install
+      - uses: $/.github/actions/test__tool
+      - uses: $/.github/actions/sync
+      - uses: $/.github/actions/pip_freeze
 
       - name: "uvx pyclean --version"
         run: uvx pyclean  --version

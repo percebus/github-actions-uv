@@ -19,10 +19,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-      - uses: ./.github/actions/setup
-      - uses: ./.github/actions/python_install
-      - uses: ./.github/actions/sync
-      - uses: ./.github/actions/pip_freeze
+      - uses: $/.github/actions/setup
+      - uses: $/.github/actions/python_install
+      - uses: $/.github/actions/sync
+      - uses: $/.github/actions/pip_freeze
 
   with__tool_install:
     needs: default
@@ -30,12 +30,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-      - uses: ./.github/actions/setup
-      - uses: ./.github/actions/tool_install
-      - uses: ./.github/actions/test__tool
-      - uses: ./.github/actions/python_install
-      - uses: ./.github/actions/sync
-      - uses: ./.github/actions/pip_freeze
+      - uses: $/.github/actions/setup
+      - uses: $/.github/actions/tool_install
+      - uses: $/.github/actions/test__tool
+      - uses: $/.github/actions/python_install
+      - uses: $/.github/actions/sync
+      - uses: $/.github/actions/pip_freeze
 
   pyproject__matrix:
     needs: default
@@ -55,13 +55,13 @@ jobs:
       WORKING_DIRECTORY: assets/uv/${{ matrix.project }}
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-      - uses: ./.github/actions/setup
-      - uses: ./.github/actions/python_install
+      - uses: $/.github/actions/setup
+      - uses: $/.github/actions/python_install
         with:
           working-directory: ${{ env.WORKING_DIRECTORY }}
 
-      - uses: ./.github/actions/sync
+      - uses: $/.github/actions/sync
         with:
           working-directory: ${{ env.WORKING_DIRECTORY }}
 
-      - uses: ./.github/actions/pip_freeze
+      - uses: $/.github/actions/pip_freeze

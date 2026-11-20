@@ -19,33 +19,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-      - uses: ./.github/actions/setup
-      - uses: ./.github/actions/tool_install
-      - uses: ./.github/actions/test__tool
-      - uses: ./.github/actions/pip_freeze
+      - uses: $/.github/actions/setup
+      - uses: $/.github/actions/tool_install
+      - uses: $/.github/actions/test__tool
+      - uses: $/.github/actions/pip_freeze
 
   after_uv_python:
     runs-on: ubuntu-latest
     needs: default
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-      - uses: ./.github/actions/setup
-      - uses: ./.github/actions/python_install
-      - uses: ./.github/actions/tool_install
-      - uses: ./.github/actions/test__tool
-      - uses: ./.github/actions/pip_freeze
+      - uses: $/.github/actions/setup
+      - uses: $/.github/actions/python_install
+      - uses: $/.github/actions/tool_install
+      - uses: $/.github/actions/test__tool
+      - uses: $/.github/actions/pip_freeze
 
   after_sync:
     runs-on: ubuntu-latest
     needs: default
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-      - uses: ./.github/actions/setup
-      - uses: ./.github/actions/python_install
-      - uses: ./.github/actions/sync
-      - uses: ./.github/actions/tool_install
-      - uses: ./.github/actions/test__tool
-      - uses: ./.github/actions/pip_freeze
+      - uses: $/.github/actions/setup
+      - uses: $/.github/actions/python_install
+      - uses: $/.github/actions/sync
+      - uses: $/.github/actions/tool_install
+      - uses: $/.github/actions/test__tool
+      - uses: $/.github/actions/pip_freeze
 
   # Override .python-version(s) with python_install
   uv_python__matrix:
@@ -65,14 +65,14 @@ jobs:
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
 
-      - uses: ./.github/actions/setup
-      - uses: ./.github/actions/python_install
+      - uses: $/.github/actions/setup
+      - uses: $/.github/actions/python_install
         with:
           working-directory: assets/uv_python/${{ matrix.python-version }}
 
-      - uses: ./.github/actions/tool_install
-      - uses: ./.github/actions/test__tool
-      - uses: ./.github/actions/pip_freeze
+      - uses: $/.github/actions/tool_install
+      - uses: $/.github/actions/test__tool
+      - uses: $/.github/actions/pip_freeze
 
   # Override .python-version(s) with github-actions-python/.../setup
   python__matrix:
@@ -97,10 +97,10 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - uses: ./.github/actions/setup
-      - uses: ./.github/actions/tool_install
-      - uses: ./.github/actions/test__tool
-      - uses: ./.github/actions/pip_freeze
+      - uses: $/.github/actions/setup
+      - uses: $/.github/actions/tool_install
+      - uses: $/.github/actions/test__tool
+      - uses: $/.github/actions/pip_freeze
 
   uv__matrix:
     needs: default
@@ -118,13 +118,13 @@ jobs:
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
 
-      - uses: ./.github/actions/setup
+      - uses: $/.github/actions/setup
         with:
           version: ${{ matrix.uv-version }}
 
-      - uses: ./.github/actions/tool_install
-      - uses: ./.github/actions/test__tool
-      - uses: ./.github/actions/pip_freeze
+      - uses: $/.github/actions/tool_install
+      - uses: $/.github/actions/test__tool
+      - uses: $/.github/actions/pip_freeze
 
   uv_tool__matrix:
     needs: default
@@ -141,13 +141,13 @@ jobs:
     name: "uv tool install: ${{ matrix.uv-tool }}"
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-      - uses: ./.github/actions/setup
+      - uses: $/.github/actions/setup
 
-      - uses: ./.github/actions/tool_install
+      - uses: $/.github/actions/tool_install
         with:
           requirements-file: ./assets/uv_tool/${{ matrix.uv-tool }}/requirements.uv.tool.txt
 
-      - uses: ./.github/actions/pip_freeze
-      - uses: ./.github/actions/test__tool
+      - uses: $/.github/actions/pip_freeze
+      - uses: $/.github/actions/test__tool
         with:
           name: ${{ matrix.uv-tool }}

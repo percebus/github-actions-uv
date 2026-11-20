@@ -10,8 +10,7 @@ inputs:
 runs:
   using: composite
   steps:
-    # TODO SHA commit
-    - uses: astral-sh/setup-uv@v5
+    - uses: astral-sh/setup-uv@v10.3.3
       name: uv @ ${{ inputs.version }}
       with:
         version: ${{ inputs.version }}
