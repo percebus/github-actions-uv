@@ -50,9 +50,8 @@ jobs:
       max-parallel: 6
       matrix:
         uv-version:
-          - "0.6.x"
-          - "0.7.x"
-          - "0.8.x"
+          - "0.12.x"
+          - "0.13.x"
 
     name: uv @ ${{ matrix.uv-version }}
     steps:
