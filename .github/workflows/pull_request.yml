@@ -13,7 +13,8 @@ permissions:
   contents: read
 
 jobs:
-  github-actions-compliance:
+  dependency-review:
+    # uses: ./.github/workflows/dependency-review.yml@main # TODO
     uses: percebus/github-actions-compliance/.github/workflows/dependency-review.yml@main
     permissions:
       contents: read
@@ -23,6 +24,7 @@ jobs:
     name: npm
     uses: percebus/github-actions-npm/.github/workflows/audit.yml@main
 
+  # XXX?
   pipx:
     name: pipx
     uses: percebus/github-actions-pipx/.github/workflows/run_pip-audit_path.yml@main
