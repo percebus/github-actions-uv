@@ -1,4 +1,4 @@
-name: run cmd
+name: "Re-Usable: uv audit"
 
 on:
   workflow_call:
@@ -36,10 +36,9 @@ jobs:
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
       - uses: percebus/github-actions-uv/.github/actions/setup@main
+
       - uses: percebus/github-actions-uv/.github/actions/audit@main
         continue-on-error: ${{ inputs.continue-on-error }}
-        secrets:
-          ssh-private-key: ${{ secrets.ssh-private-key }}
         with:
           working-directory: ${{ inputs.working-directory }}
           uv_audit_cli_options: ${{ inputs.uv_audit_cli_options }}

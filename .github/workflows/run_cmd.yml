@@ -1,4 +1,4 @@
-name: run cmd
+name: "Re-Usable: run {cmd}"
 
 on:
   workflow_call:
