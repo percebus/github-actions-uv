@@ -15,8 +15,7 @@ inputs:
   audit:
     description: uv tool audit
     required: false
-    # default: "true" # TODO
-    default: "false"
+    default: "true"
 
   continue-on-error:
     description: continue on error
