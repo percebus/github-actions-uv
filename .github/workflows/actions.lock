@@ -16,6 +16,7 @@ workflows:
     '.github/workflows/run_cmd.yml':
         - 'percebus/github-actions-common@main'
         - 'percebus/github-actions-uv@main'
+    '.github/workflows/schedule_dependencies.yml': []
     '.github/workflows/test_actions__audit.yml':
         - 'astral-sh/setup-uv@v10.3.3'
         - 'percebus/github-actions-common@main'
