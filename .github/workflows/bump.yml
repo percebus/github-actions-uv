@@ -55,13 +55,19 @@ jobs:
 
       - uses: percebus/github-actions-uv/.github/actions/setup@main
 
+      # update pyproject.toml
       - name: uv-bump
         #
         # alternatively
-        # run: uvx uv-bump --pyprojecy-toml ${{ secrets.working-directory }}/pyproject.toml
+        # run: uvx uv-bump --pyprojecy-toml ${{ inputs.working-directory }}/pyproject.toml
         #
-        working-directory: ${{ secrets.working-directory }}
+        working-directory: ${{ inputs.working-directory }}
         run: uvx uv-bump
+
+      # Update uv.lock
+      - name: uv sync --upgrade
+        working-directory: ${{ inputs.working-directory }}
+        run: uv sync --upgrade
 
       # TODO? move to -commons? create a -github?
       # SRC: https://github.com/peter-evans/create-pull-request/
