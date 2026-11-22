@@ -7,7 +7,7 @@ inputs:
     required: false
     default: --force --preview-features tool-install-locks
 
-  tools-requirements-file:
+  requirements-file:
     description: Path to requirements file
     required: false
     default: requirements.uv.tool.txt
