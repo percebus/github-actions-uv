@@ -7,6 +7,10 @@ workflows:
     '.github/workflows/audit.yml':
         - 'percebus/github-actions-common@main'
         - 'percebus/github-actions-uv@main'
+    '.github/workflows/bump.yml':
+        - 'percebus/github-actions-common@main'
+        - 'percebus/github-actions-uv@main'
+        - 'peter-evans/create-pull-request@v8.1.1'
     '.github/workflows/dependency-review.yml': []
     '.github/workflows/pull_request.yml': []
     '.github/workflows/run_cmd.yml':
@@ -81,8 +85,13 @@ dependencies:
             - 'actions/setup-python@v5'
     'percebus/github-actions-uv@main':
         ref: 'main'
-        commit: 'sha1-65abd21f19558ce3508a7361097b31b3f7a852db'
+        commit: 'sha1-a9e549783519d0e86cb9b0b8fd904775a6760b26'
         owner_id: 5483088
         repo_id: 953126631
         uses:
             - 'astral-sh/setup-uv@v10.3.3'
+    'peter-evans/create-pull-request@v8.1.1':
+        ref: 'v8.1.1'
+        commit: 'sha1-5f6978faf089d4d20b00c7766989d076bb2fc7f1'
+        owner_id: 18365890
+        repo_id: 197176365

@@ -35,6 +35,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
+        with:
+          ssh-private-key: ${{ secrets.ssh-private-key }}
+
       - uses: percebus/github-actions-uv/.github/actions/setup@main
 
       - uses: percebus/github-actions-uv/.github/actions/audit@main
