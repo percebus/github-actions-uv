@@ -28,6 +28,7 @@ github re-usable actions &amp; workflows for uv
 | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [`audit`](https://github.com/percebus/github-actions-uv/blob/main/.github/workflows/audit.yml)       | [![Test workflows/audit](https://github.com/percebus/github-actions-uv/actions/workflows/test_workflows__audit.yml/badge.svg)](https://github.com/percebus/github-actions-uv/actions/workflows/test_workflows__audit.yml)       |
 | [`run`_{cmd}](https://github.com/percebus/github-actions-uv/blob/main/.github/workflows/run_cmd.yml) | [![Test workflows/run_cmd](https://github.com/percebus/github-actions-uv/actions/workflows/test_workflows__run_cmd.yml/badge.svg)](https://github.com/percebus/github-actions-uv/actions/workflows/test_workflows__run_cmd.yml) |
+| [`uv-bump`](https://github.com/percebus/github-actions-uv/blob/main/.github/workflows/bump.yml)      | [![Cron: uv-bump dependencies](https://github.com/percebus/github-actions-uv/actions/workflows/schedule_dependencies.yml/badge.svg)](https://github.com/percebus/github-actions-uv/actions/workflows/schedule_dependencies.yml) |
 
 ## Resources
 
