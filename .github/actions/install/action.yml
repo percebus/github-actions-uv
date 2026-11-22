@@ -12,7 +12,7 @@ inputs:
     required: false
     default: --force --preview-features tool-install-locks
 
-  uv_tool_requirements-file:
+  tools-requirements-file:
     description: Path to requirements file
     required: false
     default: requirements.uv.tool.txt
@@ -36,13 +36,13 @@ runs:
   using: composite
   steps:
     - name: uv tool install
-      if: ${{ inputs.uv_tool_requirements-file != '' }}
+      if: ${{ inputs.tools-requirements-file != '' }}
       uses: percebus/github-actions-uv/.github/actions/tool_install@main
       with:
         uv_tool_install_cli_options: ${{ inputs.uv_tool_install_cli_options }}
-        requirements-file: ${{ inputs.working-directory }}/${{ inputs.uv_tool_requirements-file }}
+        requirements-file: ${{ inputs.working-directory }}/${{ inputs.tools-requirements-file }}
         audit: ${{ inputs.audit }}
-        continue-on-error: ${{ inputs.continue-on-error }} 
+        continue-on-error: ${{ inputs.continue-on-error }}
 
     - name: uv python install
       uses: percebus/github-actions-uv/.github/actions/python_install@main
