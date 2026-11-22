@@ -9,7 +9,7 @@ on:
         required: false
         default: .
 
-      requirements-file:
+      tools-requirements-file:
         description: uv tool install requirements.txt file
         type: string
         required: false
@@ -47,7 +47,7 @@ jobs:
 
       - uses: percebus/github-actions-uv/.github/actions/tool_install@main
         with:
-          requirements-file: ${{ inputs.requirements-file }}
+          requirements-file: ${{ inputs.tools-requirements-file }}
           uv_tool_install_cli_options: ${{ inputs.uv_tool_install_cli_options }}
 
       - uses: percebus/github-actions-uv/.github/actions/python_install@main
