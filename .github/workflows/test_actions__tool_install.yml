@@ -146,7 +146,7 @@ jobs:
 
       - uses: $/.github/actions/tool_install
         with:
-          requirements-file: ./assets/uv_tool/${{ matrix.uv-tool }}/requirements.uv.tool.txt
+          tools-requirements-file: ./assets/uv_tool/${{ matrix.uv-tool }}/requirements.uv.tool.txt
 
       - uses: $/.github/actions/pip_freeze
       - uses: $/.github/actions/test__tool
