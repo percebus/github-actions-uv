@@ -22,6 +22,13 @@ github re-usable actions &amp; workflows for uv
 
 [![Test actions w/ pip(x)](https://github.com/percebus/github-actions-uv/actions/workflows/test_actions__with__pipx.yml/badge.svg)](https://github.com/percebus/github-actions-uv/actions/workflows/test_actions__with__pipx.yml)
 
+### Workflows
+
+| workflow                                                                                             | test                                                                                                                                                                                                                            |
+| ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`audit`](https://github.com/percebus/github-actions-uv/blob/main/.github/workflows/audit.yml)       | [![Test workflows/audit](https://github.com/percebus/github-actions-uv/actions/workflows/test_workflows__audit.yml/badge.svg)](https://github.com/percebus/github-actions-uv/actions/workflows/test_workflows__audit.yml)       |
+| [`run`_{cmd}](https://github.com/percebus/github-actions-uv/blob/main/.github/workflows/run_cmd.yml) | [![Test workflows/run_cmd](https://github.com/percebus/github-actions-uv/actions/workflows/test_workflows__run_cmd.yml/badge.svg)](https://github.com/percebus/github-actions-uv/actions/workflows/test_workflows__run_cmd.yml) |
+
 ## Resources
 
 - [Using uv in GitHub Actions](https://docs.astral.sh/uv/guides/integration/github/#setting-up-python)
