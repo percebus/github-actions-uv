@@ -68,7 +68,7 @@ jobs:
       - uses: percebus/github-actions-uv/.github/actions/install@main
         with:
           audit: ${{ inputs.audit && 'true' || 'false '}}
-          # audit_continue-on-error: ${{ inputs.audit_continue-on-error && 'true' || 'false '}} # TODO          
+          # audit_continue-on-error: ${{ inputs.audit_continue-on-error && 'true' || 'false '}} # TODO
           continue-on-error: ${{ inputs.audit_continue-on-error && 'true' || 'false '}}
           tools-requirements-file: ${{ inputs.tools-requirements-file }}
           uv_tool_install_cli_options: ${{ inputs.uv_tool_install_cli_options }}
