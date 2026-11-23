@@ -17,20 +17,26 @@ inputs:
     required: false
     default: requirements.uv.tool.txt
 
-  uv_sync_cli_options:
-    description: CLI options for uv sync
-    required: false
-    default: "--locked --all-groups"
-
   audit:
     description: uv tool audit
     required: false
     default: "true"
 
-  continue-on-error:
+  audit_continue-on-error:
     description: continue on error
     required: false
-    default: "false"
+    default: "true"
+
+  uv_audit_cli_options:
+    description: uv audit {options}
+    type: string
+    required: false
+    default: --locked --preview-features audit-command
+
+  uv_sync_cli_options:
+    description: CLI options for uv sync
+    required: false
+    default: "--locked --all-groups"
 
 runs:
   using: composite
@@ -42,14 +48,20 @@ runs:
         uv_tool_install_cli_options: ${{ inputs.uv_tool_install_cli_options }}
         requirements-file: ${{ inputs.working-directory }}/${{ inputs.tools-requirements-file }}
         audit: ${{ inputs.audit }}
-        continue-on-error: ${{ inputs.continue-on-error }}
+        continue-on-error: ${{ inputs.audit_continue-on-error }}
 
     - name: uv python install
       uses: percebus/github-actions-uv/.github/actions/python_install@main
       with:
         working-directory: ${{ inputs.working-directory }}
 
-    # TODO add audit
+    - name: uv audit
+      uses: percebus/github-actions-uv/.github/actions/audit@main
+      continue-on-error: ${{ inputs.audit_continue-on-error }}
+      with:
+        working-directory: ${{ inputs.working-directory }}
+        uv_audit_cli_options: ${{ inputs.uv_audit_cli_options }}
+        continue-on-error: ${{ inputs.audit_continue-on-error && 'true' || 'false' }}
 
     - name: uv sync
       uses: percebus/github-actions-uv/.github/actions/sync@main
@@ -57,4 +69,4 @@ runs:
         working-directory: ${{ inputs.working-directory }}
         uv_sync_cli_options: ${{ inputs.uv_sync_cli_options }}
 
-    # TODO add pip_freeze
+    # TODO? add pip_freeze

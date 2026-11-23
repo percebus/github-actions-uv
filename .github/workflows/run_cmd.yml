@@ -22,7 +22,7 @@ on:
         required: false
         default: true
 
-      continue-on-error:
+      audit_continue-on-error:
         description: continue on error
         type: boolean
         required: false
@@ -68,7 +68,8 @@ jobs:
       - uses: percebus/github-actions-uv/.github/actions/install@main
         with:
           audit: ${{ inputs.audit && 'true' || 'false '}}
-          continue-on-error: ${{ inputs.audit && 'true' || 'false '}}
+          # audit_continue-on-error: ${{ inputs.audit_continue-on-error && 'true' || 'false '}} # TODO
+          continue-on-error: ${{ inputs.audit_continue-on-error && 'true' || 'false '}}
           tools-requirements-file: ${{ inputs.tools-requirements-file }}
           uv_tool_install_cli_options: ${{ inputs.uv_tool_install_cli_options }}
           uv_sync_cli_options: ${{ inputs.uv_sync_cli_options }}
