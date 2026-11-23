@@ -5,6 +5,7 @@ on:
   pull_request:
     paths:
       - ./.github/workflows/test_workflows__run_cmd.yml
+      - ./.github/workflows/run_cmd.yml
       - ./.github/actions/**
       - ./assets/uv/**
       - ./*

@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - ./.github/workflows/test_workflows__audit.yml
+      - ./.github/workflows/audit.yml
       - ./.github/actions/**
       - ./assets/uv/**
       - ./*
