@@ -3,6 +3,12 @@ name: Test actions/tool_install
 on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
   pull_request:
+    paths:
+      - ./.github/workflows/test_actions__tool_install.yml
+      - ./.github/actions/**
+      - ./assets/uv_python/**
+      - ./assets/uv_tool/**
+      - ./*
   push:
     branches:
       - main

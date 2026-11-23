@@ -1,7 +1,13 @@
 name: Test actions/audit
 
 on:
+  workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
   pull_request:
+    paths:
+      - ./.github/workflows/test_actions__audit.yml
+      - ./.github/actions/setup/**
+      - ./.github/actions/audit/**
+      - ./*
   push:
     branches:
       - main

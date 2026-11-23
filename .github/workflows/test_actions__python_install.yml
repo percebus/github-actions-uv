@@ -3,6 +3,10 @@ name: Test actions/python_install
 on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
   pull_request:
+    paths:
+      - ./.github/workflows/test_actions__python_install.yml
+      - ./.github/actions/setup/**
+      - ./.github/actions/python_install/**
   push:
     branches:
       - main
