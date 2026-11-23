@@ -44,3 +44,4 @@ jobs:
       - uses: $/.github/actions/install
         with:
           working-directory: ${{ env.WORKING_DIRECTORY }}
+          tools-requirements-file: ""
