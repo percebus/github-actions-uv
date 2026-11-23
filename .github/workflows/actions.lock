@@ -90,7 +90,7 @@ dependencies:
             - 'actions/setup-python@v5'
     'percebus/github-actions-uv@main':
         ref: 'main'
-        commit: 'sha1-2fdcad7d302689a2db7738db29fa7ef73bb60d86'
+        commit: 'sha1-ce5a56adc7fac65b283d30da023502e795467cc9'
         owner_id: 5483088
         repo_id: 953126631
         uses:
