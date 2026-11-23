@@ -5,6 +5,7 @@ on:
   pull_request:
     paths:
       - .github/workflows/test_actions__with__pipx.yml
+      - .github/workflows/actions.lock
       - .github/actions/**
       - assets/pipx/**
       - "*"

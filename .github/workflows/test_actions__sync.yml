@@ -5,6 +5,7 @@ on:
   pull_request:
     paths:
       - .github/workflows/test_actions__sync.yml
+      - .github/workflows/actions.lock
       - .github/actions/**
       - assets/uv/**
       - "*"
