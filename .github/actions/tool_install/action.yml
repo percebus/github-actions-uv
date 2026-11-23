@@ -21,7 +21,7 @@ inputs:
   uv_tool_audit_cli_options:
     description: uv tool audit --help
     required: false
-    default: --all --preview-features audit
+    default: --all --preview-features audit,tool-install-locks
 
   continue-on-error:
     description: continue on error

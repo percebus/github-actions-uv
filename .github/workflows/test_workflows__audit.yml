@@ -5,6 +5,7 @@ on:
     paths:
       - .github/workflows/test_workflows__audit.yml
       - .github/workflows/audit.yml
+      - .github/workflows/actions.lock
       - .github/actions/**
       - assets/uv/**
       - "*"
