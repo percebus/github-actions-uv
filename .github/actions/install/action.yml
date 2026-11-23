@@ -41,13 +41,15 @@ runs:
       with:
         uv_tool_install_cli_options: ${{ inputs.uv_tool_install_cli_options }}
         requirements-file: ${{ inputs.working-directory }}/${{ inputs.tools-requirements-file }}
-        audit: ${{ inputs.audit == 'true' }}
-        continue-on-error: ${{ inputs.continue-on-error == 'true' }}
+        audit: ${{ inputs.audit }}
+        continue-on-error: ${{ inputs.continue-on-error }}
 
     - name: uv python install
       uses: percebus/github-actions-uv/.github/actions/python_install@main
       with:
         working-directory: ${{ inputs.working-directory }}
+
+    # TODO add audit
 
     - name: uv sync
       uses: percebus/github-actions-uv/.github/actions/sync@main
