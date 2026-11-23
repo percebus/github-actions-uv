@@ -18,11 +18,10 @@ inputs:
     default: "false"
 
 runs:
-  # For more on composite actions, see:
-  # https://docs.github.com/en/actions/sharing-automations/creating-actions/creating-a-composite-action
   using: composite
   steps:
-    - shell: bash
-      run: uv audit ${{ inputs.uv_audit_cli_options }}
+    - name: uv audit
       working-directory: ${{ inputs.working-directory }}
+      shell: bash
+      run: uv audit ${{ inputs.uv_audit_cli_options }}
       continue-on-error: ${{ inputs.continue-on-error == 'true' }}
