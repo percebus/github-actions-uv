@@ -26,8 +26,8 @@ jobs:
       matrix:
         project:
           - a2a-client-py
-          - agent-framework-sampler-py
           - ai-evaluator-py
+          - agent-framework-sampler-py
 
     name: ${{ matrix.project }}/pyproject.toml
     uses: ./.github/workflows/audit.yml

@@ -2,12 +2,31 @@ name: "Re-Usable: run {cmd}"
 
 on:
   workflow_call:
+    secrets:
+      ssh-private-key:
+        description: SSH private key
+        required: false
+
     inputs:
+      # TODO add uv version
+
       working-directory:
         description: pwd
         type: string
         required: false
         default: .
+
+      audit:
+        description: uv tool audit
+        type: boolean
+        required: false
+        default: true
+
+      continue-on-error:
+        description: continue on error
+        type: boolean
+        required: false
+        default: false
 
       tools-requirements-file:
         description: uv tool install requirements.txt file
@@ -41,22 +60,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
+        with:
+          ssh-private-key: ${{ secrets.ssh-private-key }}
+
       - uses: percebus/github-actions-uv/.github/actions/setup@main
 
-      # TODO add audit@main
-
-      - uses: percebus/github-actions-uv/.github/actions/tool_install@main
+      - uses: percebus/github-actions-uv/.github/actions/install@main
         with:
-          requirements-file: ${{ inputs.tools-requirements-file }}
+          audit: ${{ inputs.audit && 'true' || 'false '}}
+          continue-on-error: ${{ inputs.audit && 'true' || 'false '}}
+          tools-requirements-file: ${{ inputs.tools-requirements-file }}
           uv_tool_install_cli_options: ${{ inputs.uv_tool_install_cli_options }}
-
-      - uses: percebus/github-actions-uv/.github/actions/python_install@main
-        with:
-          working-directory: ${{ inputs.working-directory }}
-
-      - uses: percebus/github-actions-uv/.github/actions/sync@main
-        with:
-          working-directory: ${{ inputs.working-directory }}
           uv_sync_cli_options: ${{ inputs.uv_sync_cli_options }}
 
       - name: ${{ inputs.cmd }}

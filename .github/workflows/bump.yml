@@ -8,6 +8,8 @@ on:
         required: false
 
     inputs:
+      # TODO add uv version
+
       working-directory:
         description: pwd
         type: string

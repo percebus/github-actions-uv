@@ -8,6 +8,8 @@ on:
         required: false
 
     inputs:
+      # TODO add uv version
+
       working-directory:
         description: pwd
         type: string
@@ -45,4 +47,4 @@ jobs:
         with:
           working-directory: ${{ inputs.working-directory }}
           uv_audit_cli_options: ${{ inputs.uv_audit_cli_options }}
-          continue-on-error: ${{ inputs.continue-on-error }}
+          continue-on-error: ${{ inputs.continue-on-error && 'true' || 'false' }}
