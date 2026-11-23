@@ -8,14 +8,19 @@ inputs:
     default: .
 
   uv_tool_install_cli_options:
-    description: CLI options for uv tool install
+    description: uv tool install --help
     required: false
     default: --force --preview-features tool-install-locks
 
   tools-requirements-file:
-    description: Path to requirements file
+    description: '"uv tool install -r {file}" of sorts'
     required: false
     default: requirements.uv.tool.txt
+
+  uv_tool_audit_cli_options:
+    description: uv tool audit --help
+    required: false
+    default: --all --preview-features audit
 
   audit:
     description: uv tool audit

@@ -29,7 +29,7 @@ on:
         default: false
 
       tools-requirements-file:
-        description: uv tool install requirements.txt file
+        description: '"uv tool install -r {file}" of sorts'
         type: string
         required: false
         default: requirements.uv.tool.txt
