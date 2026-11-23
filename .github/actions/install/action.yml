@@ -50,15 +50,18 @@ runs:
       if: ${{ inputs.tools-requirements-file != '' }}
       uses: percebus/github-actions-uv/.github/actions/tool_install@main
       with:
-        uv_tool_install_cli_options: ${{ inputs.uv_tool_install_cli_options }}
         requirements-file: ${{ inputs.working-directory }}/${{ inputs.tools-requirements-file }}
+        uv_tool_install_cli_options: ${{ inputs.uv_tool_install_cli_options }}
+        uv_tool_audit_cli_options: ${{ inputs.uv_tool_audit_cli_options }}
         audit: ${{ inputs.audit }}
         continue-on-error: ${{ inputs.audit_continue-on-error }}
 
+    # XXX? is this needed?
     - name: uv python install
-      uses: percebus/github-actions-uv/.github/actions/python_install@main
-      with:
-        working-directory: ${{ inputs.working-directory }}
+      # uses: percebus/github-actions-uv/.github/actions/python_install@main # TODO? or XXX?
+      working-directory: ${{ inputs.working-directory }}
+      shell: bash
+      run: uv python install
 
     - name: uv audit
       uses: percebus/github-actions-uv/.github/actions/audit@main
