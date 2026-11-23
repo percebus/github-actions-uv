@@ -3,19 +3,25 @@ description: uv tool install
 
 inputs:
   uv_tool_install_cli_options:
-    description: CLI options for uv tool install
+    description: uv tool insall --help
     required: false
     default: --force --preview-features tool-install-locks
 
   requirements-file:
-    description: Path to requirements file
+    description: '"uv tool install -r {file}" of sorts'
     required: false
     default: requirements.uv.tool.txt
 
+  # TODO? RENAME? uv_tool_audit ?
   audit:
     description: uv tool audit
     required: false
     default: "true"
+
+  uv_tool_audit_cli_options:
+    description: uv tool audit --help
+    required: false
+    default: --all --preview-features audit
 
   continue-on-error:
     description: continue on error
@@ -39,6 +45,6 @@ runs:
 
     - name: uv tool audit
       if: ${{ inputs.audit == 'true' }}
+      run: uv tool audit ${{ inputs.uv_tool_audit_cli_options }}
       shell: bash
-      run: uv tool audit --all
       continue-on-error: ${{ inputs.continue-on-error == 'true' }}
