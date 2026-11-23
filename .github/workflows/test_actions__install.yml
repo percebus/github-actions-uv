@@ -19,7 +19,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-      - uses: percebus/github-actions-uv/.github/actions/install@main
+      - uses: $/.github/actions/setup
+      - uses: $/.github/actions/install
 
   pyproject__matrix:
     needs: default
@@ -39,6 +40,7 @@ jobs:
       WORKING_DIRECTORY: assets/uv/${{ matrix.project }}
     steps:
       - uses: percebus/github-actions-common/.github/actions/checkout@main
-      - uses: percebus/github-actions-uv/.github/actions/install@main
+      - uses: $/.github/actions/setup
+      - uses: $/.github/actions/install
         with:
           working-directory: ${{ env.WORKING_DIRECTORY }}
