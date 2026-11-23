@@ -20,6 +20,10 @@ workflows:
     '.github/workflows/test_actions__audit.yml':
         - 'astral-sh/setup-uv@v10.3.3'
         - 'percebus/github-actions-common@main'
+    '.github/workflows/test_actions__install.yml':
+        - 'astral-sh/setup-uv@v10.3.3'
+        - 'percebus/github-actions-common@main'
+        - 'percebus/github-actions-uv@main'
     '.github/workflows/test_actions__pip_freeze.yml':
         - 'astral-sh/setup-uv@v10.3.3'
         - 'percebus/github-actions-common@main'
@@ -86,7 +90,7 @@ dependencies:
             - 'actions/setup-python@v5'
     'percebus/github-actions-uv@main':
         ref: 'main'
-        commit: 'sha1-a9e549783519d0e86cb9b0b8fd904775a6760b26'
+        commit: 'sha1-9df480a9545ac78e829122511bee0ef0b01b97ab'
         owner_id: 5483088
         repo_id: 953126631
         uses:

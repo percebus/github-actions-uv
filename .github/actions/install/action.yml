@@ -41,8 +41,8 @@ runs:
       with:
         uv_tool_install_cli_options: ${{ inputs.uv_tool_install_cli_options }}
         requirements-file: ${{ inputs.working-directory }}/${{ inputs.tools-requirements-file }}
-        audit: ${{ inputs.audit }}
-        continue-on-error: ${{ inputs.continue-on-error }}
+        audit: ${{ inputs.audit == 'true' }}
+        continue-on-error: ${{ inputs.continue-on-error == 'true' }}
 
     - name: uv python install
       uses: percebus/github-actions-uv/.github/actions/python_install@main
@@ -54,3 +54,5 @@ runs:
       with:
         working-directory: ${{ inputs.working-directory }}
         uv_sync_cli_options: ${{ inputs.uv_sync_cli_options }}
+
+    # TODO add pip_freeze
