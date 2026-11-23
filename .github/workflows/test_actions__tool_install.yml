@@ -8,7 +8,7 @@ on:
       - .github/actions/**
       - assets/uv_python/**
       - assets/uv_tool/**
-      - '*'
+      - "*"
   push:
     branches:
       - main

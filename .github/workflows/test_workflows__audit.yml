@@ -7,7 +7,7 @@ on:
       - .github/workflows/audit.yml
       - .github/actions/**
       - assets/uv/**
-      - '*'
+      - "*"
   push:
     branches:
       - main

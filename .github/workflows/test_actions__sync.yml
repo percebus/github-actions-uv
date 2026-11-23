@@ -7,7 +7,7 @@ on:
       - .github/workflows/test_actions__sync.yml
       - .github/actions/**
       - assets/uv/**
-      - '*'
+      - "*"
   push:
     branches:
       - main
