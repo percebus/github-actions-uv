@@ -40,6 +40,12 @@ on:
         required: false
         default: --force --preview-features tool-install-locks
 
+      uv_tool_audit_cli_options:
+        description: uv tool audit --help
+        type: string
+        required: false
+        default: --all --preview-features audit
+
       uv_sync_cli_options:
         description: uv sync --help
         type: string
@@ -71,6 +77,7 @@ jobs:
           audit_continue-on-error: ${{ inputs.audit_continue-on-error && 'true' || 'false '}} # TODO
           tools-requirements-file: ${{ inputs.tools-requirements-file }}
           uv_tool_install_cli_options: ${{ inputs.uv_tool_install_cli_options }}
+          uv_tool_audit_cli_options: ${{ inputs.uv_tool_audit_cli_options }}
           uv_sync_cli_options: ${{ inputs.uv_sync_cli_options }}
 
       - name: ${{ inputs.cmd }}
