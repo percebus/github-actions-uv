@@ -4,11 +4,11 @@ on:
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
   pull_request:
     paths:
-      - ./.github/workflows/test_actions__pip_freeze.yml
-      - ./.github/actions/setup/**
-      - ./.github/actions/python_install/**
-      - ./.github/actions/pip_freeze/**
-      - ./assets/uv_python/**
+      - .github/workflows/test_actions__pip_freeze.yml
+      - .github/actions/setup/**
+      - .github/actions/python_install/**
+      - .github/actions/pip_freeze/**
+      - assets/uv_python/**
   push:
     branches:
       - main
